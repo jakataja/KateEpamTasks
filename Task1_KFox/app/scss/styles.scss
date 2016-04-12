@@ -1,3 +1,6 @@
+//@import url(https://fonts.googleapis.com/css?family=Droid+Sans);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,600,700);
+
 $tablet-width: 768px;
 $desktop-width: 1024px;
 
@@ -6,6 +9,7 @@ $orange: #d98000;
 $yellow: #ffc603;
 $gray: #999999;
 $black: #000000;
+$underlineColor: #1f1a08;
 
 @mixin tablet {
     @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
@@ -22,46 +26,111 @@ $black: #000000;
 html {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; 
     font-size: 100%;
 }
 
 body {
+    margin: 0;
+    padding: 0;    
+    box-sizing: border-box;    
     font-size: 62.5%;
+    font-weight: 300;
     background: $black;
     color: $white;
-    font-family: Tahoma, Verdana;
+    font-family: 'Source Sans Pro', 'Droid Sans', Tahoma, Verdana;
 }     
 
-div { 
+section { 
     
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+    border-bottom: 1px $underlineColor solid;
+    border-right: 1px $underlineColor solid;    
+    padding: 0 1.3rem 1.3rem;
+    max-width: 384px;
+    overflow: hidden;
+    
     /*@include tablet { font-size: 1rem; }    
     @include desktop { font-size: 1.5rem; } */
 
+    h1 {
+        font-size: 1.4rem;
+        color: $orange;
+        font-weight: 300;
+    }
+    
+    
+    article {
+        overflow: hidden;
+        padding-bottom: 20px; 
+        
+        img {
+            float: left;
+            margin-right: 10px;
+            margin-top: 0.2rem;            
+        }
+        
+        
+    }
+    
+    .recentlyPlayed-item,
+    .singleStation-item,
     .contest-item,
-    .perks-item {        
+    .concert-item,
+    .perks-item {    
+        
+        &-image {
+            width: 50px;
+            height: 50px;
+            
+        }
+        
         &-date {
             color: $gray; 
+            font-size: 0.8rem;
         }
+        
+        &-title {
+            font-size: 1.1rem;
+        }
+        
         &-desc {
             color: $gray;    
         }
-    }
-    
-    .singleStation-item {
+        &-length {
+            color: $gray;
+            font-size: 0.8rem;
+        }
+        
+        &-frequency {
+            font-size: 1.1rem;
+        }
         &-area,
         &-gender {
             color: $gray;
+            font-size: 0.8rem;
+        }
+        
+        a {
+            color: $yellow;
+            text-decoration: none;
+            font-size: 1rem; 
+        }   
+        
+        a::after {
+            content: '>';
+            display: block;
+            width: 20px;
+            height: 20px;
+            border: 1px $yellow solid;
+            border-radius: 10px;
         }
     }
+    
+    .concert-item div { 
+        margin-bottom: 0.3rem;
+    }
+    
 } 
 
-h1 {
-    color: $orange;
-}
 
-a {
-    color: $yellow;
-    text-decoration: none;
-}

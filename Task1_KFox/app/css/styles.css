@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,600,700);
 html {
   margin: 0;
   padding: 0;
@@ -5,27 +6,103 @@ html {
   font-size: 100%; }
 
 body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-size: 62.5%;
+  font-weight: 300;
   background: #000000;
   color: #ffffff;
-  font-family: Tahoma, Verdana; }
+  font-family: 'Source Sans Pro', 'Droid Sans', Tahoma, Verdana; }
 
-div {
-  font-size: 0.8rem;
+section {
+  font-size: 0.9rem;
+  border-bottom: 1px #1f1a08 solid;
+  border-right: 1px #1f1a08 solid;
+  padding: 0 1.3rem 1.3rem;
+  max-width: 384px;
+  overflow: hidden;
   /*@include tablet { font-size: 1rem; }    
     @include desktop { font-size: 1.5rem; } */ }
-  div .contest-item-date,
-  div .perks-item-date {
+  section h1 {
+    font-size: 1.4rem;
+    color: #d98000;
+    font-weight: 300; }
+  section article {
+    overflow: hidden;
+    padding-bottom: 20px; }
+    section article img {
+      float: left;
+      margin-right: 10px;
+      margin-top: 0.2rem; }
+  section .recentlyPlayed-item-image,
+  section .singleStation-item-image,
+  section .contest-item-image,
+  section .concert-item-image,
+  section .perks-item-image {
+    width: 50px;
+    height: 50px; }
+  section .recentlyPlayed-item-date,
+  section .singleStation-item-date,
+  section .contest-item-date,
+  section .concert-item-date,
+  section .perks-item-date {
+    color: #999999;
+    font-size: 0.8rem; }
+  section .recentlyPlayed-item-title,
+  section .singleStation-item-title,
+  section .contest-item-title,
+  section .concert-item-title,
+  section .perks-item-title {
+    font-size: 1.1rem; }
+  section .recentlyPlayed-item-desc,
+  section .singleStation-item-desc,
+  section .contest-item-desc,
+  section .concert-item-desc,
+  section .perks-item-desc {
     color: #999999; }
-  div .contest-item-desc,
-  div .perks-item-desc {
-    color: #999999; }
-  div .singleStation-item-area, div .singleStation-item-gender {
-    color: #999999; }
-
-h1 {
-  color: #d98000; }
-
-a {
-  color: #ffc603;
-  text-decoration: none; }
+  section .recentlyPlayed-item-length,
+  section .singleStation-item-length,
+  section .contest-item-length,
+  section .concert-item-length,
+  section .perks-item-length {
+    color: #999999;
+    font-size: 0.8rem; }
+  section .recentlyPlayed-item-frequency,
+  section .singleStation-item-frequency,
+  section .contest-item-frequency,
+  section .concert-item-frequency,
+  section .perks-item-frequency {
+    font-size: 1.1rem; }
+  section .recentlyPlayed-item-area, section .recentlyPlayed-item-gender,
+  section .singleStation-item-area,
+  section .singleStation-item-gender,
+  section .contest-item-area,
+  section .contest-item-gender,
+  section .concert-item-area,
+  section .concert-item-gender,
+  section .perks-item-area,
+  section .perks-item-gender {
+    color: #999999;
+    font-size: 0.8rem; }
+  section .recentlyPlayed-item a,
+  section .singleStation-item a,
+  section .contest-item a,
+  section .concert-item a,
+  section .perks-item a {
+    color: #ffc603;
+    text-decoration: none;
+    font-size: 1rem; }
+  section .recentlyPlayed-item a::after,
+  section .singleStation-item a::after,
+  section .contest-item a::after,
+  section .concert-item a::after,
+  section .perks-item a::after {
+    content: '>';
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 1px #ffc603 solid;
+    border-radius: 10px; }
+  section .concert-item div {
+    margin-bottom: 0.3rem; }
