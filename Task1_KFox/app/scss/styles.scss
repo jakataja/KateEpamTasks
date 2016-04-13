@@ -23,23 +23,142 @@ $underlineColor: #1f1a08;
     }
 }
 
-html {
+@mixin morelink($color, $pos, $posValue, $topValue) {
+    color: $color;
+    text-decoration: none;
+    font-size: 1rem; 
+    //position: relative;
+    padding-bottom: 2px;
+    //display: inline-block;
+                   
+    &::before {
+        content: '';
+        display: block;
+        width: 20px;
+        height: 20px;
+        border: 1px $yellow solid;
+        @include border-radius(10px);
+        text-align: center;
+        @if $topValue != 0 {
+            top: $topValue;
+        }
+        @else {
+            top: 0;
+        }
+        @if $pos == left {
+            left: $posValue; 
+        } @else if $pos == right {
+            right: $posValue;
+        }
+        position: absolute;        
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        width: 7px;
+        height: 7px;
+        border-top: 1px $yellow solid;
+        border-right: 1px $yellow solid;            
+        @if $topValue != 0 {
+            top: $topValue+7px;
+        }
+        @else {
+            top: 7px;
+        }
+        @if $pos == left {
+            left: $posValue+5px; 
+        } @else if $pos == right {
+            right: $posValue+9px;
+        }
+        position: absolute;
+        transform: rotate(45deg);
+    }    
+} 
+ 
+@mixin border-radius($value) {
+    -webkit-border-radius: $value;
+    -moz-border-radius: $value;
+    -ms-border-radius: $value;
+    -o-border-radius: $value;
+    border-radius: $value;
+}
+
+* {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; 
+    border: 0;
+}
+
+html {
+    box-sizing: border-box;
     font-size: 100%;
 }
 
-body {
-    margin: 0;
-    padding: 0;    
+body {   
+    
     box-sizing: border-box;    
-    font-size: 62.5%;
+    //font-size: 62.5%;
     font-weight: 300;
     background: $black;
     color: $white;
     font-family: 'Source Sans Pro', 'Droid Sans', Tahoma, Verdana;
 }     
+
+a { text-decoration: none }
+
+
+#landingPage {
+    height: 100vh;
+    //width: 100%;
+    overflow: hidden;
+    background-image: url(../images/nowplaying_bg.png);
+    background-size: cover;
+    padding: 0 1.3rem;
+    
+    header {
+        margin: 1.3rem 0;
+        position: relative;
+        text-align: center;
+        
+        #hamburger { 
+            position: absolute; 
+            left: 0;
+            top: 18px;
+            
+        }
+        #logo {}
+        #volume {
+            position: absolute;
+            right: 0;
+            top: 14px;
+        }
+    }
+    
+    #np-panel {        
+                
+        &-cover {
+            width: 100%;  
+            margin-bottom: 0.5rem;
+        }
+        
+        p { 
+            text-align: center;
+            font-size: 0.8rem;
+            
+            
+            &:nth-of-type(2) {
+                font-size: 1.4rem;
+            }
+        }
+        
+        &-controls {
+            margin: 1.3rem 0;
+            text-align: center;
+        }
+    }
+}
+
 
 section { 
     
@@ -47,7 +166,7 @@ section {
     border-bottom: 1px $underlineColor solid;
     border-right: 1px $underlineColor solid;    
     padding: 0 1.3rem 1.3rem;
-    max-width: 384px;
+    //max-width: 384px;
     overflow: hidden;
     
     /*@include tablet { font-size: 1rem; }    
@@ -57,80 +176,102 @@ section {
         font-size: 1.4rem;
         color: $orange;
         font-weight: 300;
+        margin: 0.8rem 0 ;
     }
     
     
     article {
         overflow: hidden;
-        padding-bottom: 20px; 
-        
+            
         img {
             float: left;
             margin-right: 10px;
             margin-top: 0.2rem;            
         }
         
-        
-    }
-    
-    .recentlyPlayed-item,
-    .singleStation-item,
-    .contest-item,
-    .concert-item,
-    .perks-item {    
-        
-        &-image {
-            width: 50px;
-            height: 50px;
+        > div {
+            overflow: hidden;
             
+            div {
+                margin-bottom: 0.4rem;
+                position: relative;
+                
+                a {
+                    @include morelink($yellow, left, 40px, 0);                      
+                }                                
+            }                     
         }
         
-        &-date {
+        .date {
             color: $gray; 
             font-size: 0.8rem;
         }
         
-        &-title {
+        .title {
             font-size: 1.1rem;
         }
-        
-        &-desc {
+
+        .desc {
             color: $gray;    
         }
-        &-length {
+
+        .length {
             color: $gray;
             font-size: 0.8rem;
         }
-        
-        &-frequency {
+
+        .frequency {
             font-size: 1.1rem;
         }
-        &-area,
-        &-gender {
+
+        .area,
+        .gender {
             color: $gray;
             font-size: 0.8rem;
-        }
-        
+        }         
+    }
+    
+    article:not(:last-child) {
+        padding-bottom: 1rem; 
+    } 
+    
+    p {
+        position: relative;
         a {
-            color: $yellow;
-            text-decoration: none;
-            font-size: 1rem; 
-        }   
-        
-        a::after {
-            content: '>';
-            display: block;
-            width: 20px;
-            height: 20px;
-            border: 1px $yellow solid;
-            border-radius: 10px;
+            @include morelink($white, right, 0, 0);
+        }    
+    }
+    
+    p:not(:last-child) {
+        padding-bottom: 1rem; 
+    } 
+    
+    
+    
+    .recentlyPlayed-item img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .recentlyPlayed-item > div div {
+        margin-bottom: 0;
+    }
+    
+    .contest-item,
+    .concert-item,
+    .perks-item { 
+        img {
+            width: 114px;
+            height: 114px;
         }
+    }   
+} 
+
+#stationDirectory article {
+    position: relative;
+    a {
+        @include morelink($yellow, right, 0, 18px);
     }
-    
-    .concert-item div { 
-        margin-bottom: 0.3rem;
-    }
-    
 } 
 
 
