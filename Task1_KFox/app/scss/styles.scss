@@ -1,15 +1,19 @@
 //@import url(https://fonts.googleapis.com/css?family=Droid+Sans);
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,600,700);
 
+$mobile-width: 384px;
 $tablet-width: 768px;
-$desktop-width: 1024px;
+$desktop-width: 1300px;
 
 $white: #ffffff;
 $orange: #d98000;
 $yellow: #ffc603;
 $gray: #999999;
 $black: #000000;
-$underlineColor: #1f1a08;
+$gray-light: #eeeeee;
+$underlineColor: #383014;
+
+$pad: 1.3rem;
 
 @mixin tablet {
     @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
@@ -27,9 +31,7 @@ $underlineColor: #1f1a08;
     color: $color;
     text-decoration: none;
     font-size: 1rem; 
-    //position: relative;
     padding-bottom: 2px;
-    //display: inline-block;
                    
     &::before {
         content: '';
@@ -51,7 +53,7 @@ $underlineColor: #1f1a08;
             right: $posValue;
         }
         position: absolute;        
-    }
+    } 
 
     &::after {
         content: '';
@@ -84,10 +86,20 @@ $underlineColor: #1f1a08;
     border-radius: $value;
 }
 
+@mixin vgradient($topColor, $bottomColor) {    
+    background: $topColor; /* Old browsers */
+    background: -moz-linear-gradient(top,  $topColor 0%, $bottomColor 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  $topColor 0%, $bottomColor 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  $topColor 0%, $bottomColor 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$topColor', endColorstr='$bottomColor',GradientType=0 ); /* IE6-9 */ 
+}
+
+
 * {
     margin: 0;
     padding: 0;
     border: 0;
+    box-sizing: border-box;
 }
 
 html {
@@ -97,64 +109,144 @@ html {
 
 body {   
     
-    box-sizing: border-box;    
-    //font-size: 62.5%;
+    box-sizing: border-box;        
     font-weight: 300;
     background: $black;
     color: $white;
     font-family: 'Source Sans Pro', 'Droid Sans', Tahoma, Verdana;
+    background-image: url(../images/nowplaying_bg.png);
+    background-size: 100% 100vh;
+    background-repeat: no-repeat;
+    
+    @include tablet {
+        background-image: none;
+    }
+    
+    @include desktop {
+        background-image: none;
+    }
+        
 }     
 
 a { text-decoration: none }
 
 
-#landingPage {
-    height: 100vh;
-    //width: 100%;
-    overflow: hidden;
-    background-image: url(../images/nowplaying_bg.png);
-    background-size: cover;
-    padding: 0 1.3rem;
+#wrapper {
+    margin: 0 auto;
+    max-width: $mobile-width;
     
-    header {
-        margin: 1.3rem 0;
-        position: relative;
-        text-align: center;
-        
-        #hamburger { 
-            position: absolute; 
-            left: 0;
-            top: 18px;
-            
-        }
-        #logo {}
-        #volume {
-            position: absolute;
-            right: 0;
-            top: 14px;
-        }
+    @include tablet{ 
+        max-width: $tablet-width;
     }
     
+    @include desktop{ 
+        //max-width: $desktop-width;
+        max-width: 1200px;
+    }
+}
+
+@include tablet {
+    [class*="wrap-"] {
+        width: $mobile-width;                
+    }
+    .wrap-1 { float: left}
+    .wrap-2 { float: right}
+    .wrap-3 { }
+}
+
+@include desktop {
+    .wrap-1 { float: left; width: 450px; margin-right: 10px;}
+    .wrap-2 { float: left; width: 450px; margin-right: 10px;}
+    .wrap-3 { float: right; width: 280px; }
+}
+
+
+header {
+    padding: 1.3rem;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    
+    @include tablet {
+        @include vgradient($black, $gray-light);         
+    }
+    @include desktop {
+        @include vgradient($black, $gray-light);         
+    }    
+    
+    #hamburger { 
+        position: absolute; 
+        left: 1.3rem;
+        top: calc(18px + 1.3rem);
+    }
+
+    #logo {}
+    #volume { 
+        position: absolute;
+        right: 1.3rem;
+        top: calc(14px + 1.3rem);
+    }
+}
+
+
+#landingPage {
+    height: calc(100vh - 2.6rem - 65px);
+    overflow: hidden;       
+    padding: 0 1.3rem;
+    
+    @include tablet {
+        height: auto;             
+        padding: 0;
+    }    
+        
     #np-panel {        
-                
+        //margin: auto;        
+        //max-width: calc(#{$mobile-width} - 2.6rem);
+        //max-width: calc(100% - 2.6rem);
+        width: 100%;
+        position: relative;
+    
+        @include tablet {
+            max-width: 100%;
+        }
+            
         &-cover {
-            width: 100%;  
+            width: 100%;               
             margin-bottom: 0.5rem;
         }
         
         p { 
-            text-align: center;
-            font-size: 0.8rem;
-            
-            
-            &:nth-of-type(2) {
-                font-size: 1.4rem;
-            }
+            text-align: center;            
+            &:nth-of-type(1) { display: none; }
+            &:nth-of-type(2) { font-size: 0.8rem; }
+            &:nth-of-type(3) { font-size: 1.4rem; }             
+        }
+    
+        @include tablet {
+            p { 
+                text-align: left;           
+                padding-bottom: 0; 
+                &:nth-of-type(1) { display: block; font-size: 0.8rem; color: $yellow; }
+                &:nth-of-type(2) { font-size: 1.1rem; }
+                &:nth-of-type(3) { font-size: 1.4rem; }             
+            }    
         }
         
+        @include desktop {
+            p { 
+                text-align: left;            
+                &:nth-of-type(1) { display: block; font-size: 0.8rem; color: $yellow; }
+                &:nth-of-type(2) { font-size: 1.1rem; }
+                &:nth-of-type(3) { font-size: 1.4rem; }             
+            }    
+        }    
+        
         &-controls {
-            margin: 1.3rem 0;
+            margin: 0.3rem 0;
             text-align: center;
+            
+            @include tablet { display: none }
+            @include desktop { display: none }
         }
     }
 }
@@ -163,15 +255,17 @@ a { text-decoration: none }
 section { 
     
     font-size: 0.9rem;
-    border-bottom: 1px $underlineColor solid;
-    border-right: 1px $underlineColor solid;    
+    border-bottom: 1px $underlineColor solid;       
     padding: 0 1.3rem 1.3rem;
     //max-width: 384px;
+    margin: 0 auto;
     overflow: hidden;
     
-    /*@include tablet { font-size: 1rem; }    
-    @include desktop { font-size: 1.5rem; } */
-
+    @include tablet { 
+        //width: $mobile-width;                
+        //max-width: 450px;
+    }    
+    
     h1 {
         font-size: 1.4rem;
         color: $orange;
