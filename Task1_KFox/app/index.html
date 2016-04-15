@@ -4,20 +4,54 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>98.5 Kfox</title>
+        <link rel="stylesheet" href="css/fontello.css">
         <link rel="stylesheet" href="css/styles.css">
+        <script src="js/kfox.js"></script>
     </head>
     <body>
         
         <header>                
-                <img id="hamburger" src="images/hamburger.png" alt="">
+            <div id="hamburger"><img src="images/hamburger.png" alt=""></div>
                 <img id="logo" src="images/logotype.png" alt="">
-                <img id="volume" src="images/volume.png" alt="">
-            </header>          
+                <img id="volume" src="images/volume.png" alt="">     
+            <div id="player-request-btn">Request a Song</div>
+            <div id="header-player">
+                <audio src="" controls="controls">
+                    Your browser does not support the audio element.
+                </audio>       
+                <!--div id="header-player-controls"-->
+                    <img  src="images/np_controlls_stop.png" alt="" >
+                    <img  src="images/np_controlls_play.png" alt="" >
+                    <img  src="images/np_controlls_next.png" alt="" >
+                    <input type="range" value="0"/>
+                <!--/div-->
+            </div>             
+        </header>  
+        <nav class="">
+            <ul>
+                <li><a href="#landingPage">Now Playing</a></li>
+                <li><a href="#recentlyPlayed">Recently Played</a></li>
+                <li><a href="#concerts">Concerts</li>
+                <li><a href="#contests">Contests</a></li>
+                <li><a href="#getMyPerks">Get My Perks</a></li>
+                <li><a href="#kfoxLinks">KFOX Links</a></li>
+                <li><a href="#stationDirectory">Station Directory</a></li>
+            </ul>
+        </nav>
         <div id="wrapper">
             <div class="wrap-1">
                 <section id="landingPage">
                     <div id="np-panel">
                             <img id="np-panel-cover" src="images/nowplaying_image.png" alt=""/>
+                            <div id="np-panel-social-icons">
+                                <p><i class="icon-mail-circled"></i></p>
+                                <p><i class="icon-facebook-circled"></i></p>
+                                <p><i class="icon-twitter-circled"></i></p>
+                            </div>
+                            <div id="np-panel-thumbs-icons">
+                                <p><i class="icon-thumbs-up"></i></p>
+                                <p><i class="icon-thumbs-down"></i></p>
+                            </div>
                             <div id="np-panel-desc">
                                 <p>Now playing:</p>
                                 <p>Jimmi Hendrix Experience</p>
@@ -27,13 +61,10 @@
                                 <img id="np_stop" src="images/np_controlls_stop.png" alt="" >
                                 <img id="np_play" src="images/np_controlls_play.png" alt="" >
                                 <img id="np_next" src="images/np_controlls_next.png" alt="" >
-                                <!--audio src="" controls="controls">
-                                    Your browser does not support the audio element.
-                                </audio-->
                             </div>
                         </div>
                 </section>
-                <section id="recentlyPlayed">
+                <section id="recentlyPlayed" class="section-post">
                     <h1>Recently Played</h1>
                     <article class="recentlyPlayed-item">
                         <img src="images/played_1.png" alt=""/>
@@ -94,7 +125,7 @@
                 </section>
             </div>
             <div class="wrap-2">
-                <section id="concerts">
+                <section id="concerts" class="section-post">
                     <h1>Concerts</h1>
                     <article class="concert-item">
                         <img src="images/concerts_1.png" alt=""/>
@@ -124,7 +155,7 @@
                         </div>    
                     </article>
                 </section>
-                <section id="contests">
+                <section id="contests" class="section-post">
                     <h1>Contests</h1>
                     <article class="contest-item">
                         <img src="images/contests_1.png" alt=""/>
@@ -145,7 +176,7 @@
                         </div>    
                     </article>            
                 </section>
-                <section id="getMyPerks">
+                <section id="getMyPerks" class="section-post">
                 <h1>Get My PERKS</h1>
                 <article class="perks-item">
                     <img src="images/perks_1.png" alt=""/>
@@ -168,14 +199,14 @@
             </section>
             </div>
             <div class="wrap-3">
-                <section id="kfoxLinks">
+                <section id="kfoxLinks" class="section-post">
                 <h1>KFOX Links</h1>
                 <p><a href="#">KFOX Blog</a></p>
                 <p><a href="#">Facebook</a></p>
                 <p><a href="#">Twitter</a></p>
                 <p><a href="#">Concert Calendar</a></p>            
             </section>
-                <section id="stationDirectory">
+                <section id="stationDirectory" class="section-post">
                 <h1>Station Directory</h1>
                 <article class="singleStation-item">
                     <div class="frequency">102.9 KBLX</div>
