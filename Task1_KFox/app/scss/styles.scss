@@ -29,8 +29,7 @@ $pad: 1.3rem;
 
 @mixin morelink($color, $pos, $posValue, $topValue) {
     color: $color;
-    text-decoration: none;
-    //font-size: 1rem; 
+    text-decoration: none;    
     padding-bottom: 2px;
                    
     &::before {
@@ -143,14 +142,14 @@ a { text-decoration: none }
 
 #wrapper {
     margin: 0 auto;
+    min-width: 320px;
     max-width: $mobile-width;
     
     @include tablet{ 
         max-width: $tablet-width;
     }
     
-    @include desktop{ 
-        //max-width: $desktop-width;
+    @include desktop{         
         max-width: 1200px;
     }
 }
@@ -159,8 +158,8 @@ a { text-decoration: none }
     [class*="wrap-"] {
         width: $mobile-width;                
     }
-    .wrap-1 { float: left}
-    .wrap-2 { float: right}
+    .wrap-1 { float: left; }
+    .wrap-2 { float: right; }
     .wrap-3 { }
 }
 
@@ -210,17 +209,32 @@ header {
         width: calc(100% - 136px - 61px - 2*#{$pad});
         text-align: center;
         
+        
         @include tablet { display: block; }
         @include desktop { display: block; }       
         
         audio { display: none; }
-        
-        //&-controls img {
+                
         img {
-            //transform: scale(0.7);
-            height: 100%;
-            //width: 70%;
+             
+            vertical-align: middle;                        
+            
+            &#kfox_stop,            
+            &#kfox_next { height: 40px; }           
+            &#kfox_play { height: 61px; }
+                
+            &#kfox_stop,
+            &#kfox_play,
+            &#kfox_next {                
+                &:hover {
+                    box-shadow: 0 5px 5px rgba(0,0,0,0.5);;
+                    border-radius: 50%;
+                }                
+            }
+            
         }
+        
+        #kfox_volume { vertical-align: middle; height: auto;}
         
         input[type="range"] {
             -webkit-appearance: none;
@@ -228,31 +242,9 @@ header {
             width: 210px;
             background-color: $white;
             border-radius: 2px; 
-            position: relative;
-            top: 16px;
+            vertical-align: middle;
             
-            &::before {
-                content: "|";
-                display: block;
-                width: 30px;
-                height: 30px;
-                color: $black;
-                position: absolute;
-                top: -6px;
-                left: 13px;
-            }
             
-            &::after {
-                content: "";
-                display: block;
-                width: 8px;
-                height: 8px;
-                border-left: 1px #000000 solid;
-                border-right: 1px #000000 solid;
-                position: absolute;
-                top: -2px;
-                left: 10px;
-            }            
         }
         
         input::-webkit-slider-thumb {
@@ -264,12 +256,8 @@ header {
             -webkit-border-radius: 15px;
             border-radius: 15px;
             background: $white; /* Old browsers */        
-        
-            
-        }
-        
-        
-        
+                
+        }                
     }
     
     #player-request-btn {
@@ -293,7 +281,7 @@ nav {
     position: absolute;
     z-index: 1;
     top: 0;
-    left: -301px;
+    left: calc(-100vw + 33px + 2.6rem);
     //left: 0;
     background: $black;
     height: 100%;
@@ -303,14 +291,7 @@ nav {
         
     @include tablet { display: none;}
     @include desktop { display: none;}
-    
-    &.menu-on {         
-        //left: 0; 
-    }
-    &.menu-off { 
-    }
-    
-    
+        
     ul {
         list-style: none;
         
@@ -346,6 +327,7 @@ nav {
         
     #np-panel {        
         width: 100%;
+        height: 100%;
         position: relative;
     
         @include tablet {
@@ -353,8 +335,11 @@ nav {
         }
             
         &-cover {
-            width: 100%;               
-            margin-bottom: 0.5rem;            
+            max-width: 100%;
+            margin: 0 auto 0.5rem;
+            display: block;
+            max-height: calc(100% - 150px);          
+            
             @include tablet{ margin-bottom: 0; }
             @include desktop{ margin-bottom: 0; }
         }
@@ -418,6 +403,12 @@ nav {
         &-controls {
             margin: 0.3rem 0;
             text-align: center;
+            img { vertical-align: middle; 
+                &:hover {
+                    box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+                    border-radius: 50%;
+                }
+            }
             
             @include tablet { display: none }
             @include desktop { display: none }
