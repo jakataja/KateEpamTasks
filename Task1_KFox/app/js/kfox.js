@@ -12,16 +12,19 @@ window.onload = function () {
         e.preventDefault();
         var menu = document.getElementsByTagName("body")[0];        
         menu.className = (menu.className === "") ? "menu-on" : "" ;
+        window.setTimeout(function(){
+            window.location = e.target;
+        }, 500);
     });
     
             
-    var song = document.getElementById("kfox_audio"),
+    var song = document.getElementById("kfox-audio"),
         mobile = (window.innerWidth < 768) ? true : false,        
-        playBtn = (mobile) ? document.getElementById("np_play") : document.getElementById("kfox_play"),        
-        stopBtn = (mobile) ? document.getElementById("np_stop") : document.getElementById("kfox_stop"),             
-        volBtn = (mobile) ? document.getElementById("volume") : document.getElementById("kfox_volume"),
-        nextBtn = document.getElementById("kfox_next"),
-        slider = document.getElementById("kfox_slider"),
+        playBtn = (mobile) ? document.getElementById("np-play") : document.getElementById("kfox-play"),        
+        stopBtn = (mobile) ? document.getElementById("np-stop") : document.getElementById("kfox-stop"),             
+        volBtn = (mobile) ? document.getElementById("volume") : document.getElementById("kfox-volume"),
+        nextBtn = document.getElementById("kfox-next"),
+        slider = document.getElementById("kfox-slider"),
         currtime;
             
     function play() {                
@@ -63,14 +66,18 @@ window.onload = function () {
     
     
     
-    window.addEventListener("resize", function(volBtn){
+    window.addEventListener("resize", function(){
+                
+        var res = mobile;
+        mobile = (window.innerWidth < 768) ? true : false;  
         
-        mobile = (window.innerWidth < 768) ? true : false;        
-        playBtn = (mobile) ? document.getElementById("np_play") : document.getElementById("kfox_play");        stopBtn = (mobile) ? document.getElementById("np_stop") : document.getElementById("kfox_stop");
-        volBtn = (mobile) ? document.getElementById("volume") : document.getElementById("kfox_volume");
-        playBtn.addEventListener("click", play);
-        stopBtn.addEventListener("click", stop);     
-        volBtn.addEventListener("click", mute);
+        if(mobile !== res){            
+            playBtn = (mobile) ? document.getElementById("np-play") : document.getElementById("kfox-play");        stopBtn = (mobile) ? document.getElementById("np-stop") : document.getElementById("kfox-stop");
+            volBtn = (mobile) ? document.getElementById("volume") : document.getElementById("kfox-volume");
+            playBtn.addEventListener("click", play);
+            stopBtn.addEventListener("click", stop);     
+            volBtn.addEventListener("click", mute);
+        }
     });
 };
 

@@ -8,40 +8,37 @@
         <link rel="stylesheet" href="css/styles.css">
         <script src="js/kfox.js"></script>
     </head>
-    <body>
-        
-        <header>                
-            <div id="hamburger"><img src="images/hamburger.png" alt=""></div>
+    <body>        
+        <header role="banner" id="main-header">                
+            <div id="hamburger"><i role="button" class="icon-menu"></i></div>
                 <img id="logo" src="images/logotype.png" alt="">
                 <img id="volume" src="images/volume.png" alt="">     
             <div id="player-request-btn">Request a Song</div>
             <div id="header-player">
-                <audio src="https://www.freesound.org/data/previews/342/342608_4397472-lq.mp3" id="kfox_audio" controls="controls">
+                <audio src="https://www.freesound.org/data/previews/342/342608_4397472-lq.mp3" id="kfox-audio" controls="controls">
                     Your browser does not support the audio element.
-                </audio>       
-                <!--div id="header-player-controls"-->
-                    <img id="kfox_stop" src="images/np_controlls_stop.png" alt="" >
-                    <img id="kfox_play" src="images/np_controlls_play.png" alt="" >
-                    <img id="kfox_next" src="images/np_controlls_next.png" alt="" >
-                    <input id="kfox_slider" type="range" value="0" max=""/>
-                    <img id="kfox_volume" src="images/kfox_volume.png" alt="" >
-                <!--/div-->
+                </audio>    
+                <img id="kfox-stop" src="images/np_controlls_stop.png" alt="" >
+                <img id="kfox-play" src="images/np_controlls_play.png" alt="" >
+                <img id="kfox-next" src="images/np_controlls_next.png" alt="" >
+                <input id="kfox-slider" type="range" value="0" max=""/>
+                <img id="kfox-volume" src="images/kfox_volume.png" alt="" >                
             </div>             
         </header>  
-        <nav class="">
+        <nav class="" role="navigation">
             <ul>
-                <li><a href="#landingPage">Now Playing</a></li>
-                <li><a href="#recentlyPlayed">Recently Played</a></li>
+                <li><a href="#landing-page">Now Playing</a></li>
+                <li><a href="#recently-played">Recently Played</a></li>
                 <li><a href="#concerts">Concerts</li>
                 <li><a href="#contests">Contests</a></li>
-                <li><a href="#getMyPerks">Get My Perks</a></li>
-                <li><a href="#kfoxLinks">KFOX Links</a></li>
-                <li><a href="#stationDirectory">Station Directory</a></li>
+                <li><a href="#get-my-perks">Get My Perks</a></li>
+                <li><a href="#kfox-links">KFOX Links</a></li>
+                <li><a href="#station-directory">Station Directory</a></li>
             </ul>
         </nav>
-        <div id="wrapper">
+        <div id="wrapper" role="main">
             <div class="wrap-1">
-                <section id="landingPage">
+                <section id="landing-page" class="clearfix" role="region">
                     <div id="np-panel">
                             <img id="np-panel-cover" src="images/nowplaying_image.png" alt=""/>
                             <div id="np-panel-social-icons">
@@ -59,15 +56,15 @@
                                 <p>Long Hot Summer Night</p>
                             </div>    
                             <div id="np-panel-controls">
-                                <img id="np_stop" src="images/np_controlls_stop.png" alt="" >
-                                <img id="np_play" src="images/np_controlls_play.png" alt="" >
-                                <img id="np_next" src="images/np_controlls_next.png" alt="" >
+                                <img id="np-stop" src="images/np_controlls_stop.png" alt="" >
+                                <img id="np-play" src="images/np_controlls_play.png" alt="" >
+                                <img id="np-next" src="images/np_controlls_next.png" alt="" >
                             </div>
                         </div>
                 </section>
-                <section id="recentlyPlayed" class="section-post">
+                <section id="recently-played" class="section-post clearfix" role="region">
                     <h1>Recently Played</h1>
-                    <article class="recentlyPlayed-item">
+                    <article class="recently-played-item" role="article">
                         <img src="images/played_1.png" alt=""/>
                         <div>
                             <div class="author">George Thorogood &amp; Destroyers</div>
@@ -75,7 +72,7 @@
                             <div class="length">9:36</div>
                         </div>    
                     </article>
-                    <article class="recentlyPlayed-item">
+                    <article class="recently-played-item" role="article">
                         <img src="images/played_2.png" alt=""/>
                         <div>
                             <div class="author">Lynyrd Skynyrd</div>
@@ -83,15 +80,15 @@
                             <div class="length">3:31</div>
                         </div>    
                     </article> 
-                    <article class="recentlyPlayed-item">
-                        <img src="images/played_3.png" alt=""/>
+                    <article class="recently-played-item" role="article">
+                        <img src="images/played_3.png" alt="">
                         <div>
                             <div class="author">Led Zeppelin</div>
                             <div class="title">Stairway to Heaven</div>
                             <div class="length">5:36</div>
                         </div>    
                     </article>            
-                    <article class="recentlyPlayed-item"> 
+                    <article class="recently-played-item" role="article"> 
                         <img src="images/played_4.png" alt=""/>
                         <div>
                             <div class="author">The Who</div>
@@ -99,23 +96,23 @@
                             <div class="length">4:36</div>
                         </div>    
                     </article>            
-                    <article class="recentlyPlayed-item">
-                        <img src="images/played_5.png" alt=""/>
+                    <article class="recently-played-item" role="article">
+                        <img src="images/played_5.png" alt="" >
                         <div>
                             <div class="author">The Rolling Stones</div>
                             <div class="title">You Can't Always Get What You Want</div>
                             <div class="length">9:16</div>
                         </div>    
                     </article>            
-                    <article class="recentlyPlayed-item">
-                        <img src="images/played_6.png" alt=""/>
+                    <article class="recently-played-item" role="article">
+                        <img src="images/played_6.png" alt="" >
                         <div>
                             <div class="author">Guns N'Roses</div>
                             <div class="title">Patience</div>
                             <div class="length">6:11</div>
                         </div>
-                    </article>            
-                    <article class="recentlyPlayed-item">
+                    </article>          
+                    <article class="recentlyPlayed-item" role="article">
                         <img src="images/played_7.png" alt=""/>
                         <div>
                             <div class="author">Cinderella</div>
@@ -126,7 +123,7 @@
                 </section>
             </div>
             <div class="wrap-2">
-                <section id="concerts" class="section-post">
+                <section id="concerts" class="section-post clearfix" role="region">
                     <h1>Concerts</h1>
                     <article class="concert-item">
                         <img src="images/concerts_1.png" alt=""/>
@@ -137,7 +134,7 @@
                             <div class="more"><a href="#">More</a></div>
                         </div>
                     </article>
-                    <article class="concert-item">
+                    <article>
                         <img src="images/concerts_2.png" alt=""/>
                         <div>
                             <div class="date">11.12.2014 10:54 PM</div>
@@ -156,7 +153,7 @@
                         </div>    
                     </article>
                 </section>
-                <section id="contests" class="section-post">
+                <section id="contests" class="section-post clearfix" role="region">
                     <h1>Contests</h1>
                     <article class="contest-item">
                         <img src="images/contests_1.png" alt=""/>
@@ -177,7 +174,7 @@
                         </div>    
                     </article>            
                 </section>
-                <section id="getMyPerks" class="section-post">
+                <section id="get-my-perks" class="section-post clearfix" role="region">
                 <h1>Get My PERKS</h1>
                 <article class="perks-item">
                     <img src="images/perks_1.png" alt=""/>
@@ -199,15 +196,15 @@
                 </article>            
             </section>
             </div>
-            <div class="wrap-3">
-                <section id="kfoxLinks" class="section-post">
+            <div class="wrap-3 ">
+                <section id="kfox-links" class="section-post clearfix" role="region">
                 <h1>KFOX Links</h1>
                 <p><a href="#">KFOX Blog</a></p>
                 <p><a href="#">Facebook</a></p>
                 <p><a href="#">Twitter</a></p>
                 <p><a href="#">Concert Calendar</a></p>            
             </section>
-                <section id="stationDirectory" class="section-post">
+                <section id="station-directory" class="section-post clearfix" role="region">
                 <h1>Station Directory</h1>
                 <article class="singleStation-item">
                     <div class="frequency">102.9 KBLX</div>

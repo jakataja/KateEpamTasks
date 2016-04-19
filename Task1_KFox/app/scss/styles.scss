@@ -140,6 +140,22 @@ img { vertical-align: top; }
 a { text-decoration: none }
 
 
+.clearfix::before,
+.clearfix::after {
+    content: "";
+    display: table;
+}
+
+.clearfix::after {
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1; /* ie 6/7 */
+}
+
+
+
 #wrapper {
     margin: 0 auto;
     min-width: 320px;
@@ -160,7 +176,7 @@ a { text-decoration: none }
     }
     .wrap-1 { float: left; }
     .wrap-2 { float: right; }
-    .wrap-3 { }
+    .wrap-3 { float: left; }
 }
 
 @include desktop {
@@ -170,7 +186,7 @@ a { text-decoration: none }
 }
 
 
-header {
+#main-header {
     padding: 1.3rem;  
     width: 100%;
     text-align: center;    
@@ -185,8 +201,11 @@ header {
     }    
     
     #hamburger { 
-        float: left;
-        padding-top: 18px; 
+        float: left; 
+        padding-top: 13px; 
+        color: $yellow;
+        font-size: 1.5rem;
+        
         @include tablet { display: none; }
         @include desktop { display: none; }        
     }
@@ -219,13 +238,13 @@ header {
              
             vertical-align: middle;                        
             
-            &#kfox_stop,            
-            &#kfox_next { height: 40px; }           
-            &#kfox_play { height: 61px; }
+            &#kfox-stop,            
+            &#kfox-next { height: 40px; }           
+            &#kfox-play { height: 61px; }
                 
-            &#kfox_stop,
-            &#kfox_play,
-            &#kfox_next {                
+            &#kfox-stop,
+            &#kfox-play,
+            &#kfox-next {                
                 &:hover {
                     box-shadow: 0 5px 5px rgba(0,0,0,0.5);;
                     border-radius: 50%;
@@ -234,7 +253,7 @@ header {
             
         }
         
-        #kfox_volume { vertical-align: middle; height: auto;}
+        #kfox-volume { vertical-align: middle; height: auto;}
         
         input[type="range"] {
             -webkit-appearance: none;
@@ -242,9 +261,7 @@ header {
             width: 210px;
             background-color: $white;
             border-radius: 2px; 
-            vertical-align: middle;
-            
-            
+            vertical-align: middle;  
         }
         
         input::-webkit-slider-thumb {
@@ -310,9 +327,9 @@ nav {
 
 
 
-#landingPage {
+#landing-page {
     height: calc(100vh - 2.6rem - 65px);
-    overflow: hidden;       
+    //overflow: hidden;       
     padding: 0 1.3rem;
     
     @include tablet {
@@ -334,14 +351,14 @@ nav {
             max-width: 100%;
         }
             
-        &-cover {
+        &-cover {            
             max-width: 100%;
             margin: 0 auto 0.5rem;
             display: block;
             max-height: calc(100% - 150px);          
             
-            @include tablet{ margin-bottom: 0; }
-            @include desktop{ margin-bottom: 0; }
+            @include tablet{ margin-bottom: 0; width: 100%;}
+            @include desktop{ margin-bottom: 0; width: 100%; }
         }
         
         &-social-icons {
@@ -417,21 +434,14 @@ nav {
 }
 
 
-section { 
-    
-    &.section-post{
+.section-post{
     
     font-size: 0.9rem;
     border-bottom: 1px $underlineColor solid;       
     padding: 0 1.3rem 1.3rem;
-    //max-width: 384px;
     margin: 0 auto;
-    overflow: hidden;
     
-    @include tablet { 
-        //width: $mobile-width;                
-        //max-width: 450px;
-    }    
+    @include tablet { }    
     
     h1 {
         font-size: 1.4rem;
@@ -442,7 +452,7 @@ section {
     
     
     article {
-        overflow: hidden;
+        //overflow: hidden;
             
         img {
             float: left;
@@ -450,7 +460,7 @@ section {
             margin-top: 0.2rem;            
         }
         
-        > div {
+        > div { 
             overflow: hidden;
             
             div {
@@ -511,12 +521,12 @@ section {
     
     
     
-    .recentlyPlayed-item img {
+    .recently-played-item img {
         width: 50px;
         height: 50px;
     }
     
-    .recentlyPlayed-item > div div {
+    .recently-played-item > div div {
         margin-bottom: 0;
     }
     
@@ -529,10 +539,9 @@ section {
         }
     }   
         
-    }
-} 
+}
 
-#stationDirectory article {
+#station-directory article {
     position: relative;
     a {
         font-size: 1rem;
