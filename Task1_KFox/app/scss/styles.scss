@@ -47,7 +47,7 @@ $pad: 1.3rem;
         width: 20px;
         height: 20px;
         border: 1px $yellow solid;   
-        @include border-radius(10px);
+        border-radius: 10px;
         text-align: center;
         @if $topValue != 0 {
             top: $topValue;
@@ -86,20 +86,13 @@ $pad: 1.3rem;
     }    
 } 
  
-@mixin border-radius($value) {
-    -webkit-border-radius: $value;
-    -moz-border-radius: $value;
-    -ms-border-radius: $value;
-    -o-border-radius: $value;
-    border-radius: $value;
+@mixin vgradient($topColor, $bottomColor) {    
+    background: $topColor; 
+    background: linear-gradient(to bottom,  $topColor 0%, $bottomColor 100%);
 }
 
-@mixin vgradient($topColor, $bottomColor) {    
-    background: $topColor; /* Old browsers */
-    background: -moz-linear-gradient(top,  $topColor 0%, $bottomColor 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top,  $topColor 0%, $bottomColor 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom,  $topColor 0%, $bottomColor 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$topColor', endColorstr='$bottomColor',GradientType=0 ); /* IE6-9 */ 
+@function remtopix($rem) {
+	@return #{$rem / ($rem * 16)}px;
 }
 
 
@@ -108,7 +101,7 @@ $pad: 1.3rem;
     padding: 0;
     border: 0;
     box-sizing: border-box;
-    -webkit-appearance: none;
+    -webkit-appearance: none;    
 }
 
 :focus { outline: 0; }
@@ -120,14 +113,13 @@ html {
 
 body {   
     
-    box-sizing: border-box;        
-    //font-weight: 300;
+    box-sizing: border-box;            
     background: $black;
-    color: $white;
-    font-family: 'Open Sans Condensed', Tahoma, Verdana;
     background-image: url(../images/nowplaying_bg.png);
     background-size: 100% 100vh;
     background-repeat: no-repeat;
+    color: $white;
+    font-family: 'Open Sans Condensed', Tahoma, Verdana;	
     letter-spacing: 1.5px;
     
     position: relative;
@@ -199,7 +191,7 @@ a { text-decoration: none }
 #main-header {
     padding: 1.3rem;  
     width: 100%;
-    text-align: center;    
+    text-align: center;  	
     
     @include tablet {
         @include vgradient($black, $gray-light);         
@@ -211,7 +203,7 @@ a { text-decoration: none }
     }    
     
     #hamburger { 
-        float: left; 
+        float: left;
         padding-top: 13px; 
         color: $yellow;
         font-size: 1.5rem;
@@ -219,34 +211,24 @@ a { text-decoration: none }
         @include tablet { display: none; }
         @include desktop { display: none; }        
     }
-
-    #logo {
-         
-    }
-    
-    #volume { 
-        float: right;
-        padding-top: 14px;
-        @include tablet { display: none; }
-        @include desktop { display: none; }          
-    }
-    
-    #header-player {
-        display: none;
-        float: right;
+        
+    #header-player {        
+        float: right;		
         height: 61px;
-        width: calc(100% - 136px - 61px - 2*#{$pad});
-        text-align: center;
+        text-align: center;    
+		vertical-align: middle;   
         
+        @include tablet { width: calc(100% - 136px - 61px - 2*#{$pad}); }
+        @include desktop { width: calc(100% - 136px - 61px - 2*#{$pad}); }       
         
-        @include tablet { display: block; }
-        @include desktop { display: block; }       
-        
-        audio { display: none; }
-                
+        audio { display: none; }         
+		
         img {
              
-            vertical-align: middle;                        
+            vertical-align: middle;   
+			display: none;
+			@include tablet { display: inline; }
+			@include desktop { display: inline; }
             
             &#kfox-stop,            
             &#kfox-next { height: 40px; }           
@@ -262,9 +244,23 @@ a { text-decoration: none }
             }
             
         }
+       
+        #kfox-volume { 
+			display: inline-block;
+			vertical-align: middle; 
+			color: $yellow;
+			padding-top: 16px;
+			@include tablet { color: $white; padding-top: 0; }
+			@include desktop { color: $white; padding-top: 0; }				
+		}
         
-        #kfox-volume { vertical-align: middle; height: auto;}
-        
+		input { 
+			display: none;
+			@include tablet { display: inline; }
+			@include desktop { display: inline; }
+		}
+		
+		
         input[type="range"] {
             -webkit-appearance: none;
             height: 4px;
@@ -275,12 +271,10 @@ a { text-decoration: none }
         }
         
         input::-webkit-slider-thumb {
-            -webkit-appearance: none;
+            -webkit-appearance: none;            
             width: 30px;
             height: 30px;
-            border: 5px solid $yellow;
-
-            -webkit-border-radius: 15px;
+            border: 5px solid $yellow;           
             border-radius: 15px;
             background: $white; /* Old browsers */        
                 
@@ -291,12 +285,11 @@ a { text-decoration: none }
         display: none;
         float: right;
         color: $black;
-        //font-weight: 500;
         padding: 0 1rem;
         line-height: 2rem;
         border-radius: 1rem;
-        @include vgradient($yellow2, $yellow); 
-        transform: translateY(50%);
+		transform: translateY(50%);
+        @include vgradient($yellow2, $yellow);         
     
         @include tablet { display: block; }
         @include desktop { display: block; }
@@ -309,7 +302,6 @@ nav {
     z-index: 1;
     top: 0;
     left: calc(-100vw + 33px + 2.6rem);
-    //left: 0;
     background: $black;
     height: 100%;
     width: calc(100vw - 33px - 2.6rem);
@@ -338,8 +330,7 @@ nav {
 
 
 #landing-page {
-    height: calc(100vh - 2.6rem - 65px);
-    //overflow: hidden;       
+    height: calc(100vh - 2.6rem - 65px);      
     padding: 0 1.3rem;
     
     @include tablet {
@@ -450,9 +441,7 @@ nav {
     border-bottom: 1px $underlineColor solid;       
     padding: 0 1.3rem 1.3rem;
     margin: 0 auto;
-    
-    @include tablet { }    
-    
+        
     h1 {
         font-size: 1.4rem;
         color: $orange;
@@ -461,8 +450,7 @@ nav {
     }
     
     
-    article {
-        //overflow: hidden;
+    .post {        
             
         img {
             float: left;
@@ -513,7 +501,7 @@ nav {
         }         
     }
     
-    article:not(:last-child) {
+    &:not(:last-child) {
         padding-bottom: 1rem; 
     } 
     

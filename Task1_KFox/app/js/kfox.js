@@ -7,13 +7,13 @@ document.addEventListener('DOMContentLoaded', function () {
 		nav = document.querySelector('nav'),
 		song = document.querySelector('#kfox-audio'),
         mobile = (window.innerWidth < 768) ? true : false,
-        playBtn = (mobile) ? document.querySelectorAll('.play')[1] : document.querySelectorAll('.play')[0],
-        stopBtn = (mobile) ? document.querySelectorAll('.stop')[1] : document.querySelectorAll('.stop')[0],
-        volBtn = (mobile) ? document.querySelectorAll('.vol')[0] : document.querySelectorAll('.vol')[1],
+        playBtn = document.querySelectorAll('.play'),
+        stopBtn = document.querySelectorAll('.stop'),
+        volBtn = document.querySelector('#kfox-volume'),
         nextBtn = document.querySelector('#kfox-next'),
         slider = document.querySelector('#kfox-slider'),
         currtime;
-
+	
     function play() {
         if (song.currentTime === 0) {
             song.play();
@@ -25,52 +25,50 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 		
         if (!song.paused) {
-			this.src = 'images/np_controlls_pause.png';
+			playBtn[0].src = 'images/np_controlls_pause.png';
+			playBtn[1].src = 'images/np_controlls_pause.png';
 		} else {
-			this.src = 'images/np_controlls_play.png';
+			playBtn[0].src = 'images/np_controlls_play.png';
+			playBtn[1].src = 'images/np_controlls_play.png';
 		}
     }
     
     function stop() {
         song.pause();
         song.currentTime = 0;
-        playBtn.src = 'images/np_controlls_play.png';
+        playBtn[0].src = 'images/np_controlls_play.png';
+        playBtn[1].src = 'images/np_controlls_play.png';
     }
     
     function mute() {
         song.muted = !song.muted;
-        if (song.muted) {
-            if (mobile) {
-				this.src = 'images/mute.png';
-			} else {
-				this.src = 'images/kfox_mute.png';
-			}
-        } else {
-            if (mobile) {
-				this.src = 'images/volume.png';
-			} else {
-				this.src = 'images/kfox_volume.png';
-			}
-        }
+        volBtn.classList.toggle('icon-volume-up');
+        volBtn.classList.toggle('icon-volume-off');
     }
 	
 	hamburger.addEventListener('click', function () {
         page.className = (page.className === '') ? 'menu-on' : '';
     });
+	
+	volBtn.addEventListener('click', mute);
     
     nav.addEventListener('click', function (e) {
         e = e || event;
-        e.preventDefault();        
+        e.preventDefault();
 		page.classList.toggle('menu-on');
         window.setTimeout(function () {
             window.location = e.target;
         }, 500);
     });
 	
-    playBtn.addEventListener('click', play);
-    stopBtn.addEventListener('click', stop);
-    volBtn.addEventListener('click', mute);
-    
+    if (mobile) {
+		playBtn[1].addEventListener('click', play);
+		stopBtn[1].addEventListener('click', stop);
+	} else {
+		playBtn[0].addEventListener('click', play);
+		stopBtn[0].addEventListener('click', stop);
+	}
+	
     song.ontimeupdate = function () {
         if (!mobile) {
 			slider.value = parseInt(this.currentTime, 10);
@@ -83,12 +81,23 @@ document.addEventListener('DOMContentLoaded', function () {
         mobile = (window.innerWidth < 768) ? true : false;
         
         if (mobile !== res) {
-			playBtn = (mobile) ? document.querySelectorAll('.play')[1] : document.querySelectorAll('.play')[0];
-			stopBtn = (mobile) ? document.querySelectorAll('.stop')[1] : document.querySelectorAll('.stop')[0];
-			volBtn = (mobile) ? document.querySelectorAll('.vol')[0] : document.querySelectorAll('.vol')[1];
-            playBtn.addEventListener('click', play);
-            stopBtn.addEventListener('click', stop);
-            volBtn.addEventListener('click', mute);
+					
+			if (mobile) {
+				playBtn[1].addEventListener('click', play);
+				stopBtn[1].addEventListener('click', stop);
+				
+				playBtn[0].removeEventListener('click', play);
+				stopBtn[0].removeEventListener('click', stop);
+				
+			} else {
+				playBtn[0].addEventListener('click', play);
+				stopBtn[0].addEventListener('click', stop);
+				
+				playBtn[1].removeEventListener('click', play);
+				stopBtn[1].removeEventListener('click', stop);
+				
+			}
+
         }
     });
 });
