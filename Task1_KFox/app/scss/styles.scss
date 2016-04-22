@@ -9,6 +9,8 @@
   font-style: normal;
 }
 
+$baseFont: 16px;
+
 $mobile-width: 384px;
 $tablet-width: 768px;
 $desktop-width: 1300px;
@@ -20,12 +22,16 @@ $yellow2: #fde544;
 $gray: #999999;
 $black: #000000;
 $gray-light: #eeeeee;
-$underlineColor: #383014;
+$underline-color: #383014;
 
-$pad: 1.3rem;
+@function px($rem) {
+	@return  (($rem / 1rem) * $baseFont);
+}
+
+$pad: 20px;
 
 @mixin tablet {
-	@media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+	@media (min-width: #{$tablet-width}) and (max-width: #{ $desktop-width - 1px}) {
 		@content;
 	}
 }
@@ -38,16 +44,21 @@ $pad: 1.3rem;
 
 @mixin morelink($color, $pos, $posValue, $topValue) {
 	color: $color;
-	text-decoration: none;
 	padding-bottom: 2px;
+	text-decoration: none;
 
 	&::before {
-		content: '';
-		display: block;
-		width: 20px;
-		height: 20px;
 		border: 1px $yellow solid;
 		border-radius: 10px;
+		content: '';
+		display: block;
+		height: 20px;
+		@if $pos == left {
+			left: $posValue;
+		} @else if $pos == right {
+			right: $posValue;
+		}
+		position: absolute;
 		text-align: center;
 		@if $topValue != 0 {
 			top: $topValue;
@@ -55,12 +66,8 @@ $pad: 1.3rem;
 		@else {
 			top: 0;
 		}
-		@if $pos == left {
-			left: $posValue;
-		} @else if $pos == right {
-			right: $posValue;
-		}
-		position: absolute;
+
+		width: 20px;
 	}
 
 	&::after {
@@ -70,16 +77,18 @@ $pad: 1.3rem;
 		height: 7px;
 		border-top: 1px $yellow solid;
 		border-right: 1px $yellow solid;
+
 		@if $topValue != 0 {
 			top: $topValue+7px;
 		}
 		@else {
 			top: 7px;
 		}
+
 		@if $pos == left {
 			left: $posValue+5px;
 		} @else if $pos == right {
-			right: $posValue+9px;
+			right: $posValue + 9px;
 		}
 		position: absolute;
 		transform: rotate(45deg);
@@ -91,16 +100,11 @@ $pad: 1.3rem;
 	background: linear-gradient(to bottom,  $topColor 0%, $bottomColor 100%);
 }
 
-@function remtopix($rem) {
-	@return #{$rem / ($rem * 16)}px;
-}
-
-
 * {
-	margin: 0;
-	padding: 0;
 	border: 0;
 	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 	-webkit-appearance: none;
 }
 
@@ -134,8 +138,7 @@ body {
 		background-image: none;
 	}
 
-
-	&.menu-on { left: calc(100vw - 33px - 2.6rem); }
+	&.menu-on { left: calc(100vw - #{px(2rem)} - 2*#{$pad)}; }
 }
 
 img { vertical-align: top; }
@@ -182,14 +185,14 @@ a { text-decoration: none }
 }
 
 @include desktop {
-	.wrap-1 { float: left; width: 450px; margin-right: 10px;}
-	.wrap-2 { float: left; width: 450px; margin-right: 10px;}
+	.wrap-1 { float: left; margin-right: 10px; width: 450px; }
+	.wrap-2 { float: left; margin-right: 10px; width: 450px; }
 	.wrap-3 { float: right; width: 280px; }
 }
 
 
 #main-header {
-	padding: 1.3rem;
+	padding: px(1.3rem);
 	width: 100%;
 	text-align: center;
 
@@ -201,136 +204,135 @@ a { text-decoration: none }
 		@include vgradient($black, $gray-light);
 		text-align: left;
 	}
+}
 
-	#hamburger {
-		float: left;
-		padding-top: 13px;
-		color: $yellow;
-		font-size: 1.5rem;
+#hamburger {
+	color: $yellow;
+	float: left;
+	font-size: px(1.5rem);
+	padding-top: 13px;
 
-		@include tablet { display: none; }
-		@include desktop { display: none; }
-	}
+	@include tablet { display: none; }
+	@include desktop { display: none; }
+}
 
-	#header-player {
-		float: right;
-		height: 61px;
-		text-align: center;
+#header-player {
+	float: right;
+	height: 61px;
+	text-align: center;
+	vertical-align: middle;
+
+	@include tablet { width: calc(100% - 136px - 61px - 2*#{$pad}); }
+	@include desktop { width: calc(100% - 136px - 61px - 2*#{$pad}); }
+
+	audio { display: none; }
+
+	img {
+		display: none;
 		vertical-align: middle;
 
-		@include tablet { width: calc(100% - 136px - 61px - 2*#{$pad}); }
-		@include desktop { width: calc(100% - 136px - 61px - 2*#{$pad}); }
-
-		audio { display: none; }
-
-		img {
-
-			vertical-align: middle;
-			display: none;
-			@include tablet { display: inline; }
-			@include desktop { display: inline; }
-
-			&#kfox-stop,
-			&#kfox-next { height: 40px; }
-			&#kfox-play { height: 61px; }
-
-			&#kfox-stop,
-			&#kfox-play,
-			&#kfox-next {
-				&:hover {
-					box-shadow: 0 5px 5px rgba(0,0,0,0.5);;
-					border-radius: 50%;
-				}
-			}
-
-		}
-
-		#kfox-volume {
-			display: inline-block;
-			vertical-align: middle;
-			color: $yellow;
-			padding-top: 16px;
-			@include tablet { color: $white; padding-top: 0; }
-			@include desktop { color: $white; padding-top: 0; }
-		}
-
-		input {
-			display: none;
-			@include tablet { display: inline; }
-			@include desktop { display: inline; }
-		}
-
-
-		input[type="range"] {
-			-webkit-appearance: none;
-			height: 4px;
-			width: 210px;
-			background-color: $white;
-			border-radius: 2px;
-			vertical-align: middle;
-		}
-
-		input::-webkit-slider-thumb {
-			-webkit-appearance: none;
-			width: 30px;
-			height: 30px;
-			border: 5px solid $yellow;
-			border-radius: 15px;
-			background: $white; /* Old browsers */
-
-		}
+		@include tablet { display: inline; }
+		@include desktop { display: inline; }
 	}
 
-	#player-request-btn {
+	input {
 		display: none;
-		float: right;
-		color: $black;
-		padding: 0 1rem;
-		line-height: 2rem;
-		border-radius: 1rem;
-		transform: translateY(50%);
-		@include vgradient($yellow2, $yellow);
+		@include tablet { display: inline; }
+		@include desktop { display: inline; }
+	}
 
-		@include tablet { display: block; }
-		@include desktop { display: block; }
+	input[type="range"] {
+		-webkit-appearance: none;
+		background-color: $white;
+		border-radius: 2px;
+		height: 4px;
+		vertical-align: middle;
+		width: 210px;
+	}
+
+	input::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		background: $white;
+		border: 5px solid $yellow;
+		border-radius: 15px;
+		height: 30px;
+		width: 30px;
 	}
 }
 
+#kfox-stop,
+#kfox-next { height: 40px; }
+
+#kfox-play { height: 61px; }
+
+#kfox-stop,
+#kfox-play,
+#kfox-next {
+	&:hover {
+		border-radius: 50%;
+		box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+	}
+}
+
+#kfox-volume {
+	color: $yellow;
+	display: inline-block;
+	padding-top: 16px;
+	vertical-align: middle;
+
+	@include tablet { color: $white; padding-top: 0; }
+	@include desktop { color: $white; padding-top: 0; }
+}
+
+#player-request-btn {
+	border-radius: px(1rem);
+	color: $black;
+	display: none;
+	float: right;
+	line-height: px(2rem);
+	padding: 0 px(1rem);
+	transform: translateY(50%);
+	@include vgradient($yellow2, $yellow);
+	@include tablet { display: block; }
+	@include desktop { display: block; }
+}
+
 nav {
-	position: absolute;
-	z-index: 1;
-	top: 0;
-	left: calc(-100vw + 33px + 2.6rem);
 	background: $black;
 	height: 100%;
-	width: calc(100vw - 33px - 2.6rem);
-	padding: 2.1rem $pad;
+	left: calc(-100vw + #{px(2rem)} + 2*#{$pad});
+	padding: 34px $pad;
+	position: absolute;
+	top: 0;
 	transition: all 0.5s ease-out;
+	width: calc(100vw - #{px(2rem)} - 2*#{$pad});
+	z-index: 1;
 
-	@include tablet { display: none;}
-	@include desktop { display: none;}
+	@include tablet { display: none; }
+	@include desktop { display: none; }
 
 	ul {
 		list-style: none;
+	}
 
-		li {
-			position: relative;
-			padding-bottom: $pad;
+	li {
+		padding-bottom: $pad;
+		position: relative;
+	}
 
-			a {
-				display: block;
-				font-size: 1.4rem;
-				@include morelink($orange, right, 0, 4px);
-			}
-		}
+	a {
+		display: block;
+		font-size: px(1.4rem);
+		@include morelink($orange, right, 0, 4px);
 	}
 }
 
 
 
 #landing-page {
-	height: calc(100vh - 2.6rem - 65px);
-	padding: 0 1.3rem;
+
+	height: calc(100vh - #{$pad}*2 - 65px);
+	padding: 0 $pad;
 
 	@include tablet {
 		height: auto;
@@ -341,116 +343,147 @@ nav {
 		height: auto;
 		padding: 0;
 	}
+}
 
-	#np-panel {
-		width: 100%;
-		height: 100%;
-		position: relative;
+#np-panel {
+	height: 100%;
+	position: relative;
+	width: 100%;
+
+	@include tablet {
+		max-width: 100%;
+	}
+
+	&-cover {
+		display: block;
+		margin: 0 auto px(0.5rem);
+		max-height: calc(100% - 150px);
+		max-width: 100%;
+
+		@include tablet { margin-bottom: 0; width: 100%; }
+		@include desktop { margin-bottom: 0; width: 100%; }
+	}
+
+	&-social-icons {
+		display: none;
+
+		@include tablet { display: block; position: absolute; top: 0; padding: $pad $pad 0; }
+		@include desktop { display: block; position: absolute; top: 0; padding: $pad $pad 0; }
+
+		p {
+			font-size: px(1.5rem);
+		}
+	}
+
+	&-thumbs-icons {
+		display: none;
 
 		@include tablet {
-			max-width: 100%;
-		}
-
-		&-cover {
-			max-width: 100%;
-			margin: 0 auto 0.5rem;
+			bottom: 0;
 			display: block;
-			max-height: calc(100% - 150px);
-
-			@include tablet { margin-bottom: 0; width: 100%; }
-			@include desktop { margin-bottom: 0; width: 100%; }
+			padding: 0 $pad $pad;
+			position: absolute;
+			right: 0;
 		}
 
-		&-social-icons {
-			display: none;
-
-			@include tablet { display: block; position: absolute; top: 0; padding: $pad $pad 0; }
-			@include desktop { display: block; position: absolute; top: 0; padding: $pad $pad 0; }
-
-			p {
-				font-size: 1.5rem;
-			}
+		@include desktop {
+			bottom: 0;
+			display: block;
+			padding: 0 $pad $pad;
+			position: absolute;
+			right: 0;
 		}
 
-		&-thumbs-icons {
-			display: none;
-
-			@include tablet {
-				display: block; position: absolute; bottom: 0; right: 0; padding: 0 $pad $pad;
-			}
-			@include desktop {
-				display: block; position: absolute; bottom: 0; right: 0; padding: 0 $pad $pad;
-			}
-
-			p {
-				font-size: 1.5rem;
-			}
+		p {
+			font-size: px(1.5rem);
 		}
+	}
 
-		&-desc {
+	&-desc {
 
-			@include tablet { position: absolute; bottom: 0; padding: 0 $pad 1.3rem; }
-			@include desktop { position: absolute; bottom: 0; padding: 0 $pad 1.3rem; }
+		@include tablet { bottom: 0; padding: 0 $pad $pad; position: absolute; }
+		@include desktop { bottom: 0; padding: 0 $pad $pad; position: absolute; }
 
-			p {
-				text-align: center;
-				&:nth-of-type(1) { display: none; }
-				&:nth-of-type(2) { font-size: 0.8rem; }
-				&:nth-of-type(3) { font-size: 1.4rem; }
-			}
-
-			@include tablet {
-				p {
-					text-align: left;
-					&:nth-of-type(1) { display: block; font-size: 0.8rem; color: $yellow; padding-bottom: 0.4rem; }
-					&:nth-of-type(2) { font-size: 1.1rem; }
-					&:nth-of-type(3) { font-size: 1.4rem; }
-				}
-			}
-
-			@include desktop {
-				p {
-					text-align: left;
-					padding-bottom: 0;
-					&:nth-of-type(1) { display: block; font-size: 0.8rem; color: $yellow; padding-bottom: 0.4rem; }
-					&:nth-of-type(2) { font-size: 1.1rem; }
-					&:nth-of-type(3) { font-size: 1.4rem; }
-				}
-			}
-		}
-
-		&-controls {
-			margin: 0.3rem 0;
+		p {
 			text-align: center;
-			img {
-				vertical-align: middle;
-				&:hover {
-					box-shadow: 0 5px 5px rgba(0,0,0,0.5);
-					border-radius: 50%;
-				}
+		}
+
+		&-header { display: none; }
+		&-performer { font-size: px(0.8rem); }
+		&-title { font-size: px(1.4rem); }
+
+		@include tablet {
+
+			p {
+				text-align: left;
 			}
-			@include tablet { display: none; }
-			@include desktop { display: none; }
+
+			&-header {
+				color: $yellow;
+				display: block;
+				font-size: px(0.8rem);
+				padding-bottom: px(0.4rem);
+			}
+
+			&-performer { font-size: px(1.1rem); }
+			&-title { font-size: px(1.4rem); }
+		}
+
+		@include desktop {
+
+			p {
+				padding-bottom: 0;
+				text-align: left;
+			}
+
+			&-header {
+				color: $yellow;
+				display: block;
+				font-size: px(0.8rem);
+				padding-bottom: px(0.4rem);
+			}
+
+			&-performer { font-size: px(1.1rem); }
+			&-title { font-size: px(1.4rem); }
+
+		}
+	}
+
+	&-controls {
+
+		@include tablet { display: none; }
+		@include desktop { display: none; }
+
+		margin: px(0.3rem) 0;
+		text-align: center;
+
+		img {
+			vertical-align: middle;
+			&:hover {
+				box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+				border-radius: 50%;
+			}
 		}
 	}
 }
 
+
 article:not(:last-child) {
-	margin-bottom: 1rem;
+	margin-bottom: px(1rem);
 }
 
 .section-post {
 
-	font-size: 0.9rem;
-	border-bottom: 1px $underlineColor solid;
-	padding: 0 1.3rem 1.3rem;
+	border-bottom: 1px $underline-color solid;
+	font-size: px(0.9rem);
 	margin: 0 auto;
+	padding: 0 $pad $pad;
 
 	h1 {
-		font-size: 1.4rem;
 		color: $orange;
+		font-size: px(1.4rem);
 		font-weight: 300;
-		margin: 0.8rem 0 ;
+		margin: px(0.8rem) 0 ;
 	}
 
 	.post {
@@ -458,17 +491,17 @@ article:not(:last-child) {
 		img {
 			float: left;
 			margin-right: 10px;
-			margin-top: 0.2rem;
+			margin-top: px(0.2rem);
 		}
 
 		> div {
 
 			div {
-				margin-bottom: 0.4rem;
+				margin-bottom: px(0.4rem);
 				position: relative;
 
 				a {
-					font-size: 1rem;
+					font-size: px(1rem);
 					@include morelink($yellow, left, 40px, 0);
 				}
 			}
@@ -478,61 +511,63 @@ article:not(:last-child) {
 	p {
 		position: relative;
 		a {
-			font-size: 1rem;
+			font-size: px(1rem);
 			@include morelink($white, right, 0, 0);
 		}
 	}
 
 	p:not(:last-child) {
-		padding-bottom: 1rem;
-	}
-
-	.recently-played-item {
-		img {
-			width: 50px;
-			height: 50px;
-		}
-
-		> div {
-			display: inline-block;
-			width: calc(100% - 60px);
-		}
-
-		> div div {
-			margin-bottom: 0;
-		}
-	}
-
-	.contest-item,
-	.concert-item,
-	.perks-item {
-		img {
-			width: 114px;
-			height: 114px;
-		}
-
-		> div {
-			display: inline-block;
-			width: calc(100% - 124px);
-		}
+		padding-bottom: px(1rem);
 	}
 }
 
-#station-directory article {
+.recently-played-item {
+
+	img {
+		height: 50px;
+		width: 50px;
+	}
+
+	> div {
+		display: inline-block;
+		width: calc(100% - 60px);
+	}
+
+	> div div {
+		margin-bottom: 0;
+	}
+}
+
+.contest-item,
+.concert-item,
+.perks-item {
+	img {
+		height: 114px;
+		width: 114px;
+	}
+
+	> div {
+		display: inline-block;
+		width: calc(100% - 124px);
+	}
+}
+
+.single-station-item {
 	position: relative;
+
 	a {
-		font-size: 1rem;
+		font-size: px(1rem);
 		@include morelink($yellow, right, 0, 18px);
 	}
 }
 
 .date {
 	color: $gray;
-	font-size: 0.8rem;
+	font-size: px(0.8rem);
 }
 
 .title {
-	font-size: 1.1rem;
+	font-size: px(1.1rem);
 }
 
 .desc {
@@ -541,15 +576,15 @@ article:not(:last-child) {
 
 .length {
 	color: $gray;
-	font-size: 0.8rem;
+	font-size: px(0.8rem);
 }
 
 .frequency {
-	font-size: 1.1rem;
+	font-size: px(1.1rem);
 }
 
 .area,
 .gender {
 	color: $gray;
-	font-size: 0.8rem;
+	font-size: px(0.8rem);
 }
