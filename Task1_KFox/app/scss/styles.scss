@@ -138,7 +138,7 @@ body {
 		background-image: none;
 	}
 
-	&.menu-on { left: calc(100vw - #{px(2rem)} - 2*#{$pad)}; }
+	&.menu-on { left: calc(100vw - #{px(2rem)} - 2*#{$pad} ); }
 }
 
 img { vertical-align: top; }
