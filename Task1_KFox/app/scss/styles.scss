@@ -1,10 +1,10 @@
 @font-face {
-  font-family: 'Open Sans Condensed';
-  src: url('../font/OpenSans-CondLight.eot');
-  src: url('../font/OpenSans-CondLight.eot#iefix') format('embedded-opentype'),
-	   url('../font/OpenSans-CondLight.woff') format('woff'),
-	   url('../font/OpenSans-CondLight.ttf') format('truetype'),
-	   url('../font/OpenSans-CondLight.svg#OpenSans-CondLight') format('svg');
+  font-family: "Open Sans Condensed";
+  src: url("../font/OpenSans-CondLight.eot");
+  src: url("../font/OpenSans-CondLight.eot#iefix") format("embedded-opentype"),
+	   url("../font/OpenSans-CondLight.woff") format("woff"),
+	   url("../font/OpenSans-CondLight.ttf") format("truetype"),
+	   url("../font/OpenSans-CondLight.svg#OpenSans-CondLight") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -357,8 +357,8 @@ nav {
 			display: block;
 			max-height: calc(100% - 150px);
 
-			@include tablet{ margin-bottom: 0; width: 100%;}
-			@include desktop{ margin-bottom: 0; width: 100%; }
+			@include tablet { margin-bottom: 0; width: 100%; }
+			@include desktop { margin-bottom: 0; width: 100%; }
 		}
 
 		&-social-icons {
@@ -422,20 +422,24 @@ nav {
 		&-controls {
 			margin: 0.3rem 0;
 			text-align: center;
-			img { vertical-align: middle;
+			img {
+				vertical-align: middle;
 				&:hover {
 					box-shadow: 0 5px 5px rgba(0,0,0,0.5);
 					border-radius: 50%;
 				}
 			}
-			@include tablet { display: none }
-			@include desktop { display: none }
+			@include tablet { display: none; }
+			@include desktop { display: none; }
 		}
 	}
 }
 
+article:not(:last-child) {
+	margin-bottom: 1rem;
+}
 
-.section-post{
+.section-post {
 
 	font-size: 0.9rem;
 	border-bottom: 1px $underlineColor solid;
@@ -458,7 +462,6 @@ nav {
 		}
 
 		> div {
-			overflow: hidden;
 
 			div {
 				margin-bottom: 0.4rem;
@@ -470,38 +473,6 @@ nav {
 				}
 			}
 		}
-
-		.date {
-			color: $gray;
-			font-size: 0.8rem;
-		}
-
-		.title {
-			font-size: 1.1rem;
-		}
-
-		.desc {
-			color: $gray;
-		}
-
-		.length {
-			color: $gray;
-			font-size: 0.8rem;
-		}
-
-		.frequency {
-			font-size: 1.1rem;
-		}
-
-		.area,
-		.gender {
-			color: $gray;
-			font-size: 0.8rem;
-		}
-	}
-
-	&:not(:last-child) {
-		padding-bottom: 1rem;
 	}
 
 	p {
@@ -516,13 +487,20 @@ nav {
 		padding-bottom: 1rem;
 	}
 
-	.recently-played-item img {
-		width: 50px;
-		height: 50px;
-	}
+	.recently-played-item {
+		img {
+			width: 50px;
+			height: 50px;
+		}
 
-	.recently-played-item > div div {
-		margin-bottom: 0;
+		> div {
+			display: inline-block;
+			width: calc(100% - 60px);
+		}
+
+		> div div {
+			margin-bottom: 0;
+		}
 	}
 
 	.contest-item,
@@ -531,6 +509,11 @@ nav {
 		img {
 			width: 114px;
 			height: 114px;
+		}
+
+		> div {
+			display: inline-block;
+			width: calc(100% - 124px);
 		}
 	}
 }
@@ -541,4 +524,32 @@ nav {
 		font-size: 1rem;
 		@include morelink($yellow, right, 0, 18px);
 	}
+}
+
+.date {
+	color: $gray;
+	font-size: 0.8rem;
+}
+
+.title {
+	font-size: 1.1rem;
+}
+
+.desc {
+	color: $gray;
+}
+
+.length {
+	color: $gray;
+	font-size: 0.8rem;
+}
+
+.frequency {
+	font-size: 1.1rem;
+}
+
+.area,
+.gender {
+	color: $gray;
+	font-size: 0.8rem;
 }
