@@ -1,11 +1,11 @@
 @font-face {
-  font-family: "Open Sans Condensed";
-  src: url("../font/OpenSans-CondLight.eot?#iefix") format("embedded-opentype"),
-	   url("../font/OpenSans-CondLight.woff") format("woff"),
-	   url("../font/OpenSans-CondLight.ttf") format("truetype"),
-	   url("../font/OpenSans-CondLight.svg#OpenSans-CondLight") format("svg");
-  font-weight: normal;
-  font-style: normal;
+ font-family: "Open Sans Condensed";
+ src: url("../font/OpenSans-CondLight.eot?#iefix") format("embedded-opentype"),
+  url("../font/OpenSans-CondLight.woff") format("woff"),
+  url("../font/OpenSans-CondLight.ttf") format("truetype"),
+  url("../font/OpenSans-CondLight.svg#OpenSans-CondLight") format("svg");
+ font-weight: normal;
+ font-style: normal;
 }
 
 $base-font: 16px;
@@ -24,240 +24,240 @@ $gray-light: #eeeeee;
 $underline-color: #383014;
 
 @function px($rem) {
-	@return  (($rem / 1rem) * $base-font);
+  @return  (($rem / 1rem) * $base-font);
 }
 
 $pad: 20px;
 
 @mixin tablet {
-	@media (min-width: #{$tablet-width}) and (max-width: #{ $desktop-width - 1px}) {
-		@content;
-	}
+  @media (min-width: #{$tablet-width}) and (max-width: #{ $desktop-width - 1px}) {
+  @content;
+  }
 }
 
 @mixin desktop {
-	@media (min-width: #{$desktop-width}) {
-		@content;
-	}
+  @media (min-width: #{$desktop-width}) {
+  @content;
+  }
 }
 
 @mixin morelink($color, $pos, $pos-value, $top-value) {
-	color: $color;
-	padding-bottom: 2px;
-	text-decoration: none;
+  color: $color;
+  padding-bottom: 2px;
+  text-decoration: none;
 
-	&::before {
-		border: 1px $yellow solid;
-		border-radius: 10px;
-		content: "";
-		display: block;
-		height: 20px;
-		position: absolute;
-		text-align: center;
-		width: 20px;
+  &::before {
+    border: 1px $yellow solid;
+    border-radius: 10px;
+    content: "";
+    display: block;
+    height: 20px;
+    position: absolute;
+    text-align: center;
+    width: 20px;
 
-		@if $pos == left {
-			left: $pos-value;
-		} @else if $pos == right {
-			right: $pos-value;
-		}
+    @if $pos == left {
+      left: $pos-value;
+    } @else if $pos == right {
+      right: $pos-value;
+    }
 
-		@if $top-value != 0 {
-			top: $top-value;
-		} @else {
-			top: 0;
-		}
-	}
+    @if $top-value != 0 {
+      top: $top-value;
+    } @else {
+      top: 0;
+    }
+  }
 
-	&::after {
-		border-top: 1px $yellow solid;
-		border-right: 1px $yellow solid;
-		content: "";
-		display: block;
-		height: 7px;
-		position: absolute;
-		transform: rotate(45deg);
-		width: 7px;
+  &::after {
+    border-top: 1px $yellow solid;
+    border-right: 1px $yellow solid;
+    content: "";
+    display: block;
+    height: 7px;
+    position: absolute;
+    transform: rotate(45deg);
+    width: 7px;
 
-		@if $top-value != 0 {
-			top: $top-value+7px;
-		} @else {
-			top: 7px;
-		}
+    @if $top-value != 0 {
+      top: $top-value + 7px;
+    } @else {
+      top: 7px;
+    }
 
-		@if $pos == left {
-			left: $pos-value+5px;
-		} @else if $pos == right {
-			right: $pos-value + 9px;
-		}
-	}
+    @if $pos == left {
+      left: $pos-value + 5px;
+    } @else if $pos == right {
+      right: $pos-value + 9px;
+    }
+  }
 }
 
 @mixin vgradient($top-color, $bottom-color) {
-	background: $top-color;
-	background: linear-gradient(to bottom,  $top-color 0%, $bottom-color 100%);
+  background: $top-color;
+  background: linear-gradient(to bottom,  $top-color 0%, $bottom-color 100%);
 }
 
 * {
-	border: 0;
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-	-webkit-appearance: none;
+  border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-appearance: none;
 }
 
 :focus { outline: 0; }
 
 html {
-	box-sizing: border-box;
-	font-size: 100%;
+  box-sizing: border-box;
+  font-size: 100%;
 }
 
 body {
 
-	box-sizing: border-box;
-	background: $black;
-	background-image: url("../images/nowplaying_bg.png");
-	background-size: 100% 100vh;
-	background-repeat: no-repeat;
-	color: $white;
-	font-family: 'Open Sans Condensed', Tahoma, Verdana;
-	letter-spacing: 1.5px;
+  box-sizing: border-box;
+  background: $black;
+  background-image: url("../images/nowplaying_bg.png");
+  background-size: 100% 100vh;
+  background-repeat: no-repeat;
+  color: $white;
+  font-family: 'Open Sans Condensed', Tahoma, Verdana;
+  letter-spacing: 1.5px;
 
-	position: relative;
-	left: 0;
-	transition: left 0.5s ease-out;
+  position: relative;
+  left: 0;
+  transition: left 0.5s ease-out;
 
-	@include tablet {
-		background-image: none;
-	}
+  @include tablet {
+    background-image: none;
+  }
 
-	@include desktop {
-		background-image: none;
-	}
+  @include desktop {
+    background-image: none;
+  }
 
-	&.menu-on {
-		left: calc(100vw - 32px - #{$pad}*2 );
-	}
+  &.menu-on {
+    left: calc(100vw - 32px - #{$pad}*2 );
+  }
 }
 
 img { vertical-align: top; }
-a { text-decoration: none }
+a { text-decoration: none; }
 
 
 .clearfix::before,
 .clearfix::after {
-	content: "";
-	display: table;
+  content: "";
+  display: table;
 }
 
 .clearfix::after {
-	clear: both;
+  clear: both;
 }
 
 .clearfix {
-	zoom: 1; /* ie 6/7 */
+  zoom: 1; /* ie 6/7 */
 }
 
 
 
 #wrapper {
-	margin: 0 auto;
-	min-width: 320px;
-	max-width: $mobile-width;
+  margin: 0 auto;
+  min-width: 320px;
+  max-width: $mobile-width;
 
-	@include tablet{
-		max-width: $tablet-width;
-	}
+  @include tablet{
+    max-width: $tablet-width;
+  }
 
-	@include desktop{
-		max-width: 1200px;
-	}
+  @include desktop{
+    max-width: 1200px;
+  }
 }
 
 @include tablet {
-	[class*="wrap-"] {
-		width: $mobile-width;
-	}
-	.wrap-1 { float: left; }
-	.wrap-2 { float: right; }
-	.wrap-3 { float: left; }
+  [class*="wrap-"] {
+    width: $mobile-width;
+  }
+  .wrap-1 { float: left; }
+  .wrap-2 { float: right; }
+  .wrap-3 { float: left; }
 }
 
 @include desktop {
-	.wrap-1 { float: left; margin-right: 10px; width: 450px; }
-	.wrap-2 { float: left; margin-right: 10px; width: 450px; }
-	.wrap-3 { float: right; width: 280px; }
+  .wrap-1 { float: left; margin-right: 10px; width: 450px; }
+  .wrap-2 { float: left; margin-right: 10px; width: 450px; }
+  .wrap-3 { float: right; width: 280px; }
 }
 
 
 #main-header {
-	padding: px(1.3rem);
-	width: 100%;
-	text-align: center;
+  padding: px(1.3rem);
+  width: 100%;
+  text-align: center;
 
-	@include tablet {
-		@include vgradient($black, $gray-light);
-		text-align: left;
-	}
-	@include desktop {
-		@include vgradient($black, $gray-light);
-		text-align: left;
-	}
+  @include tablet {
+  @include vgradient($black, $gray-light);
+    text-align: left;
+  }
+  @include desktop {
+  @include vgradient($black, $gray-light);
+    text-align: left;
+  }
 }
 
 #hamburger {
-	color: $yellow;
-	float: left;
-	font-size: px(1.5rem);
-	padding-top: 13px;
+  color: $yellow;
+  float: left;
+  font-size: px(1.5rem);
+  padding-top: 13px;
 
-	@include tablet { display: none; }
-	@include desktop { display: none; }
+  @include tablet { display: none; }
+  @include desktop { display: none; }
 }
 
 #header-player {
-	float: right;
-	height: 61px;
-	text-align: center;
-	vertical-align: middle;
+  float: right;
+  height: 61px;
+  text-align: center;
+  vertical-align: middle;
 
-	@include tablet { width: calc(100% - 136px - 61px - #{$pad}*2 ); }
-	@include desktop { width: calc(100% - 136px - 61px - #{$pad}*2 ); }
+  @include tablet { width: calc(100% - 136px - 61px - #{$pad}*2 ); }
+  @include desktop { width: calc(100% - 136px - 61px - #{$pad}*2 ); }
 
-	audio { display: none; }
+  audio { display: none; }
 
-	img {
-		display: none;
-		vertical-align: middle;
+  img {
+    display: none;
+    vertical-align: middle;
 
-		@include tablet { display: inline; }
-		@include desktop { display: inline; }
-	}
+    @include tablet { display: inline; }
+    @include desktop { display: inline; }
+  }
 
-	input {
-		display: none;
-		@include tablet { display: inline; }
-		@include desktop { display: inline; }
-	}
+  input {
+    display: none;
+    @include tablet { display: inline; }
+    @include desktop { display: inline; }
+  }
 
-	input[type="range"] {
-		-webkit-appearance: none;
-		background-color: $white;
-		border-radius: 2px;
-		height: 4px;
-		vertical-align: middle;
-		width: 210px;
-	}
+  input[type="range"] {
+    -webkit-appearance: none;
+    background-color: $white;
+    border-radius: 2px;
+    height: 4px;
+    vertical-align: middle;
+    width: 210px;
+  }
 
-	input::-webkit-slider-thumb {
-		-webkit-appearance: none;
-		background: $white;
-		border: 5px solid $yellow;
-		border-radius: 15px;
-		height: 30px;
-		width: 30px;
-	}
+  input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: $white;
+    border: 5px solid $yellow;
+    border-radius: 15px;
+    height: 30px;
+    width: 30px;
+  }
 }
 
 #kfox-stop,
@@ -268,340 +268,340 @@ a { text-decoration: none }
 #kfox-stop,
 #kfox-play,
 #kfox-next {
-	&:hover {
-		border-radius: 50%;
-		box-shadow: 0 5px 5px rgba(0,0,0,0.5);
-	}
+  &:hover {
+    border-radius: 50%;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+  }
 }
 
 #kfox-volume {
-	color: $yellow;
-	display: inline-block;
-	padding-top: 16px;
-	vertical-align: middle;
+  color: $yellow;
+  display: inline-block;
+  padding-top: 16px;
+  vertical-align: middle;
 
-	@include tablet { color: $white; padding-top: 0; }
-	@include desktop { color: $white; padding-top: 0; }
+  @include tablet { color: $white; padding-top: 0; }
+  @include desktop { color: $white; padding-top: 0; }
 }
 
 #player-request-btn {
-	@include vgradient($yellow2, $yellow);
-	border-radius: px(1rem);
-	color: $black;
-	display: none;
-	float: right;
-	line-height: px(2rem);
-	padding: 0 px(1rem);
-	transform: translateY(50%);
-	@include tablet { display: block; }
-	@include desktop { display: block; }
+  @include vgradient($yellow2, $yellow);
+  border-radius: px(1rem);
+  color: $black;
+  display: none;
+  float: right;
+  line-height: px(2rem);
+  padding: 0 px(1rem);
+  transform: translateY(50%);
+  @include tablet { display: block; }
+  @include desktop { display: block; }
 }
 
 nav {
-	background: $black;
-	height: 100%;
-	left: calc(-100vw + #{px(2rem)} + 2*#{$pad});
-	padding: 34px $pad;
-	position: absolute;
-	top: 0;
-	transition: all 0.5s ease-out;
-	width: calc(100vw - #{px(2rem)} - 2*#{$pad});
-	z-index: 1;
+  background: $black;
+  height: 100%;
+  left: calc(-100vw + #{px(2rem)} + 2*#{$pad});
+  padding: 34px $pad;
+  position: absolute;
+  top: 0;
+  transition: all 0.5s ease-out;
+  width: calc(100vw - #{px(2rem)} - 2*#{$pad});
+  z-index: 1;
 
-	@include tablet { display: none; }
-	@include desktop { display: none; }
+  @include tablet { display: none; }
+  @include desktop { display: none; }
 
-	ul {
-		list-style: none;
-	}
+  ul {
+    list-style: none;
+  }
 
-	li {
-		padding-bottom: $pad;
-		position: relative;
-	}
+  li {
+    padding-bottom: $pad;
+    position: relative;
+  }
 
-	a {
-		@include morelink($orange, right, 0, 4px);
-		display: block;
-		font-size: px(1.4rem);
-	}
+  a {
+    @include morelink($orange, right, 0, 4px);
+    display: block;
+    font-size: px(1.4rem);
+  }
 }
 
 
 
 #landing-page {
 
-	height: calc(100vh - #{$pad}*2 - 65px);
-	padding: 0 $pad;
+  height: calc(100vh - #{$pad}*2 - 65px);
+  padding: 0 $pad;
 
-	@include tablet {
-		height: auto;
-		padding: 0;
-	}
+  @include tablet {
+    height: auto;
+    padding: 0;
+  }
 
-	@include desktop {
-		height: auto;
-		padding: 0;
-	}
+  @include desktop {
+    height: auto;
+    padding: 0;
+  }
 }
 
 #np-panel {
-	height: 100%;
-	position: relative;
-	width: 100%;
+  height: 100%;
+  position: relative;
+  width: 100%;
 
-	@include tablet {
-		max-width: 100%;
-	}
+  @include tablet {
+    max-width: 100%;
+  }
 
-	&-cover {
-		display: block;
-		margin: 0 auto px(0.5rem);
-		max-height: calc(100% - 150px);
-		max-width: 100%;
+  &-cover {
+    display: block;
+    margin: 0 auto px(0.5rem);
+    max-height: calc(100% - 150px);
+    max-width: 100%;
 
-		@include tablet { margin-bottom: 0; width: 100%; }
-		@include desktop { margin-bottom: 0; width: 100%; }
-	}
+    @include tablet { margin-bottom: 0; width: 100%; }
+    @include desktop { margin-bottom: 0; width: 100%; }
+  }
 
-	&-social-icons {
-		display: none;
+  &-social-icons {
+    display: none;
 
-		@include tablet {
-			display: block;
-			padding: $pad $pad 0;
-			position: absolute;
-			top: 0;
-			}
+    @include tablet {
+      display: block;
+      padding: $pad $pad 0;
+      position: absolute;
+      top: 0;
+      }
 
-		@include desktop {
-			display: block;
-			padding: $pad $pad 0;
-			position: absolute;
-			top: 0;
-		}
+    @include desktop {
+      display: block;
+      padding: $pad $pad 0;
+      position: absolute;
+      top: 0;
+    }
 
-		p {
-			font-size: px(1.5rem);
-		}
-	}
+    p {
+      font-size: px(1.5rem);
+    }
+  }
 
-	&-thumbs-icons {
-		display: none;
+  &-thumbs-icons {
+    display: none;
 
-		@include tablet {
-			bottom: 0;
-			display: block;
-			padding: 0 $pad $pad;
-			position: absolute;
-			right: 0;
-		}
+    @include tablet {
+      bottom: 0;
+      display: block;
+      padding: 0 $pad $pad;
+      position: absolute;
+      right: 0;
+    }
 
-		@include desktop {
-			bottom: 0;
-			display: block;
-			padding: 0 $pad $pad;
-			position: absolute;
-			right: 0;
-		}
+    @include desktop {
+      bottom: 0;
+      display: block;
+      padding: 0 $pad $pad;
+      position: absolute;
+      right: 0;
+    }
 
-		p {
-			font-size: px(1.5rem);
-		}
-	}
+    p {
+      font-size: px(1.5rem);
+    }
+  }
 
-	&-desc {
+  &-desc {
 
-		@include tablet { bottom: 0; padding: 0 $pad $pad; position: absolute; }
-		@include desktop { bottom: 0; padding: 0 $pad $pad; position: absolute; }
+    @include tablet { bottom: 0; padding: 0 $pad $pad; position: absolute; }
+    @include desktop { bottom: 0; padding: 0 $pad $pad; position: absolute; }
 
-		p {
-			text-align: center;
-		}
+    p {
+      text-align: center;
+    }
 
-		&-header { display: none; }
-		&-performer { font-size: px(0.8rem); }
-		&-title { font-size: px(1.4rem); }
+    &-header { display: none; }
+    &-performer { font-size: px(0.8rem); }
+    &-title { font-size: px(1.4rem); }
 
-		@include tablet {
+    @include tablet {
 
-			p {
-				text-align: left;
-			}
+      p {
+        text-align: left;
+      }
 
-			&-header {
-				color: $yellow;
-				display: block;
-				font-size: px(0.8rem);
-				padding-bottom: px(0.4rem);
-			}
+      &-header {
+        color: $yellow;
+        display: block;
+        font-size: px(0.8rem);
+        padding-bottom: px(0.4rem);
+      }
 
-			&-performer { font-size: px(1.1rem); }
-			&-title { font-size: px(1.4rem); }
-		}
+      &-performer { font-size: px(1.1rem); }
+      &-title { font-size: px(1.4rem); }
+    }
 
-		@include desktop {
+    @include desktop {
 
-			p {
-				padding-bottom: 0;
-				text-align: left;
-			}
+      p {
+        padding-bottom: 0;
+        text-align: left;
+      }
 
-			&-header {
-				color: $yellow;
-				display: block;
-				font-size: px(0.8rem);
-				padding-bottom: px(0.4rem);
-			}
+      &-header {
+        color: $yellow;
+        display: block;
+        font-size: px(0.8rem);
+        padding-bottom: px(0.4rem);
+      }
 
-			&-performer { font-size: px(1.1rem); }
-			&-title { font-size: px(1.4rem); }
+      &-performer { font-size: px(1.1rem); }
+      &-title { font-size: px(1.4rem); }
 
-		}
-	}
+    }
+  }
 
-	&-controls {
+  &-controls {
 
-		@include tablet { display: none; }
-		@include desktop { display: none; }
+    @include tablet { display: none; }
+    @include desktop { display: none; }
 
-		margin: px(0.3rem) 0;
-		text-align: center;
+    margin: px(0.3rem) 0;
+    text-align: center;
 
-		img {
-			vertical-align: middle;
-			&:hover {
-				box-shadow: 0 5px 5px rgba(0,0,0,0.5);
-				border-radius: 50%;
-			}
-		}
-	}
+    img {
+      vertical-align: middle;
+      &:hover {
+        box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+        border-radius: 50%;
+      }
+    }
+  }
 }
 
 
 article:not(:last-child) {
-	margin-bottom: px(1rem);
+  margin-bottom: px(1rem);
 }
 
 .section-post {
 
-	border-bottom: 1px $underline-color solid;
-	font-size: px(0.9rem);
-	margin: 0 auto;
-	padding: 0 $pad $pad;
+  border-bottom: 1px $underline-color solid;
+  font-size: px(0.9rem);
+  margin: 0 auto;
+  padding: 0 $pad $pad;
 
-	h1 {
-		color: $orange;
-		font-size: px(1.4rem);
-		font-weight: 300;
-		margin: px(0.8rem) 0;
-	}
+  h1 {
+    color: $orange;
+    font-size: px(1.4rem);
+    font-weight: 300;
+    margin: px(0.8rem) 0;
+  }
 
-	p {
-		position: relative;
-		a {
-			@include morelink($white, right, 0, 0);
-			font-size: px(1rem);
-		}
-	}
+  p {
+    position: relative;
+    a {
+      @include morelink($white, right, 0, 0);
+      font-size: px(1rem);
+    }
+  }
 
-	p:not(:last-child) {
-		padding-bottom: px(1rem);
-	}
+  p:not(:last-child) {
+    padding-bottom: px(1rem);
+  }
 }
 
 .post {
 
-	img {
-		float: left;
-		margin-right: 10px;
-		margin-top: px(0.2rem);
-	}
+  img {
+    float: left;
+    margin-right: 10px;
+    margin-top: px(0.2rem);
+  }
 
-	&-wrapper {
+  &-wrapper {
 
-		div {
-			margin-bottom: px(0.4rem);
-		}
-	}
+    div {
+      margin-bottom: px(0.4rem);
+    }
+  }
 }
 
 .more {
-	position: relative;
+  position: relative;
 
-	a {
-		font-size: px(1rem);
-		@include morelink($yellow, left, 40px, 0);
-	}
+  a {
+    font-size: px(1rem);
+    @include morelink($yellow, left, 40px, 0);
+  }
 }
 
 
 .recently-played-item {
 
-	img {
-		height: 50px;
-		width: 50px;
-	}
+  img {
+    height: 50px;
+    width: 50px;
+  }
 
-	.post-wrapper {
-		display: inline-block;
-		width: calc(100% - 60px);
-	}
+  .post-wrapper {
+    display: inline-block;
+    width: calc(100% - 60px);
+  }
 
-	.author,
-	.title,
-	.length {
-		margin-bottom: 0;
-	}
+  .author,
+  .title,
+  .length {
+    margin-bottom: 0;
+  }
 }
 
 .contest-item,
 .concert-item,
 .perks-item {
-	img {
-		height: 114px;
-		width: 114px;
-	}
+  img {
+    height: 114px;
+    width: 114px;
+  }
 
-	.post-wrapper {
-		display: inline-block;
-		width: calc(100% - 124px);
-	}
+  .post-wrapper {
+    display: inline-block;
+    width: calc(100% - 124px);
+  }
 }
 
 .single-station-item {
-	position: relative;
+  position: relative;
 
-	a {
-		font-size: px(1rem);
-		@include morelink($yellow, right, 0, 18px);
-	}
+  a {
+    font-size: px(1rem);
+    @include morelink($yellow, right, 0, 18px);
+  }
 }
 
 .date {
-	color: $gray;
-	font-size: px(0.8rem);
+  color: $gray;
+  font-size: px(0.8rem);
 }
 
 .title {
-	font-size: px(1.1rem);
+  font-size: px(1.1rem);
 }
 
 .desc {
-	color: $gray;
+  color: $gray;
 }
 
 .length {
-	color: $gray;
-	font-size: px(0.8rem);
+  color: $gray;
+  font-size: px(0.8rem);
 }
 
 .frequency {
-	font-size: px(1.1rem);
+  font-size: px(1.1rem);
 }
 
 .area,
 .gender {
-	color: $gray;
-	font-size: px(0.8rem);
+  color: $gray;
+  font-size: px(0.8rem);
 }
