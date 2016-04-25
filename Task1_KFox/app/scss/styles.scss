@@ -8,7 +8,7 @@
   font-style: normal;
 }
 
-$baseFont: 16px;
+$base-font: 16px;
 
 $mobile-width: 384px;
 $tablet-width: 768px;
@@ -24,7 +24,7 @@ $gray-light: #eeeeee;
 $underline-color: #383014;
 
 @function px($rem) {
-	@return  (($rem / 1rem) * $baseFont);
+	@return  (($rem / 1rem) * $base-font);
 }
 
 $pad: 20px;
@@ -41,7 +41,7 @@ $pad: 20px;
 	}
 }
 
-@mixin morelink($color, $pos, $posValue, $topValue) {
+@mixin morelink($color, $pos, $pos-value, $top-value) {
 	color: $color;
 	padding-bottom: 2px;
 	text-decoration: none;
@@ -49,54 +49,53 @@ $pad: 20px;
 	&::before {
 		border: 1px $yellow solid;
 		border-radius: 10px;
-		content: '';
+		content: "";
 		display: block;
 		height: 20px;
-		@if $pos == left {
-			left: $posValue;
-		} @else if $pos == right {
-			right: $posValue;
-		}
 		position: absolute;
 		text-align: center;
-		@if $topValue != 0 {
-			top: $topValue;
-		}
-		@else {
-			top: 0;
+		width: 20px;
+
+		@if $pos == left {
+			left: $pos-value;
+		} @else if $pos == right {
+			right: $pos-value;
 		}
 
-		width: 20px;
+		@if $top-value != 0 {
+			top: $top-value;
+		} @else {
+			top: 0;
+		}
 	}
 
 	&::after {
-		content: '';
-		display: block;
-		width: 7px;
-		height: 7px;
 		border-top: 1px $yellow solid;
 		border-right: 1px $yellow solid;
+		content: "";
+		display: block;
+		height: 7px;
+		position: absolute;
+		transform: rotate(45deg);
+		width: 7px;
 
-		@if $topValue != 0 {
-			top: $topValue+7px;
-		}
-		@else {
+		@if $top-value != 0 {
+			top: $top-value+7px;
+		} @else {
 			top: 7px;
 		}
 
 		@if $pos == left {
-			left: $posValue+5px;
+			left: $pos-value+5px;
 		} @else if $pos == right {
-			right: $posValue + 9px;
+			right: $pos-value + 9px;
 		}
-		position: absolute;
-		transform: rotate(45deg);
 	}
 }
 
-@mixin vgradient($topColor, $bottomColor) {
-	background: $topColor;
-	background: linear-gradient(to bottom,  $topColor 0%, $bottomColor 100%);
+@mixin vgradient($top-color, $bottom-color) {
+	background: $top-color;
+	background: linear-gradient(to bottom,  $top-color 0%, $bottom-color 100%);
 }
 
 * {
@@ -118,7 +117,7 @@ body {
 
 	box-sizing: border-box;
 	background: $black;
-	background-image: url(../images/nowplaying_bg.png);
+	background-image: url("../images/nowplaying_bg.png");
 	background-size: 100% 100vh;
 	background-repeat: no-repeat;
 	color: $white;
@@ -137,7 +136,9 @@ body {
 		background-image: none;
 	}
 
-	&.menu-on { left: calc(100vw - #{px(2rem)} - 2*#{$pad} ); }
+	&.menu-on {
+		left: calc(100vw - 32px - #{$pad}*2 );
+	}
 }
 
 img { vertical-align: top; }
@@ -221,8 +222,8 @@ a { text-decoration: none }
 	text-align: center;
 	vertical-align: middle;
 
-	@include tablet { width: calc(100% - 136px - 61px - 2*#{$pad}); }
-	@include desktop { width: calc(100% - 136px - 61px - 2*#{$pad}); }
+	@include tablet { width: calc(100% - 136px - 61px - #{$pad}*2 ); }
+	@include desktop { width: calc(100% - 136px - 61px - #{$pad}*2 ); }
 
 	audio { display: none; }
 
@@ -366,8 +367,19 @@ nav {
 	&-social-icons {
 		display: none;
 
-		@include tablet { display: block; position: absolute; top: 0; padding: $pad $pad 0; }
-		@include desktop { display: block; position: absolute; top: 0; padding: $pad $pad 0; }
+		@include tablet {
+			display: block;
+			padding: $pad $pad 0;
+			position: absolute;
+			top: 0;
+			}
+
+		@include desktop {
+			display: block;
+			padding: $pad $pad 0;
+			position: absolute;
+			top: 0;
+		}
 
 		p {
 			font-size: px(1.5rem);
@@ -482,29 +494,7 @@ article:not(:last-child) {
 		color: $orange;
 		font-size: px(1.4rem);
 		font-weight: 300;
-		margin: px(0.8rem) 0 ;
-	}
-
-	.post {
-
-		img {
-			float: left;
-			margin-right: 10px;
-			margin-top: px(0.2rem);
-		}
-
-		> div {
-
-			div {
-				margin-bottom: px(0.4rem);
-				position: relative;
-
-				a {
-					font-size: px(1rem);
-					@include morelink($yellow, left, 40px, 0);
-				}
-			}
-		}
+		margin: px(0.8rem) 0;
 	}
 
 	p {
@@ -520,6 +510,32 @@ article:not(:last-child) {
 	}
 }
 
+.post {
+
+	img {
+		float: left;
+		margin-right: 10px;
+		margin-top: px(0.2rem);
+	}
+
+	&-wrapper {
+
+		div {
+			margin-bottom: px(0.4rem);
+		}
+	}
+}
+
+.more {
+	position: relative;
+
+	a {
+		font-size: px(1rem);
+		@include morelink($yellow, left, 40px, 0);
+	}
+}
+
+
 .recently-played-item {
 
 	img {
@@ -527,12 +543,14 @@ article:not(:last-child) {
 		width: 50px;
 	}
 
-	> div {
+	.post-wrapper {
 		display: inline-block;
 		width: calc(100% - 60px);
 	}
 
-	> div div {
+	.author,
+	.title,
+	.length {
 		margin-bottom: 0;
 	}
 }
@@ -545,7 +563,7 @@ article:not(:last-child) {
 		width: 114px;
 	}
 
-	> div {
+	.post-wrapper {
 		display: inline-block;
 		width: calc(100% - 124px);
 	}
