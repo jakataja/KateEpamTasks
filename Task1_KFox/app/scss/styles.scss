@@ -1,7 +1,6 @@
 @font-face {
   font-family: "Open Sans Condensed";
-  src: url("../font/OpenSans-CondLight.eot");
-  src: url("../font/OpenSans-CondLight.eot#iefix") format("embedded-opentype"),
+  src: url("../font/OpenSans-CondLight.eot?#iefix") format("embedded-opentype"),
 	   url("../font/OpenSans-CondLight.woff") format("woff"),
 	   url("../font/OpenSans-CondLight.ttf") format("truetype"),
 	   url("../font/OpenSans-CondLight.svg#OpenSans-CondLight") format("svg");
@@ -127,8 +126,8 @@ body {
 	letter-spacing: 1.5px;
 
 	position: relative;
-	left:0;
-	transition: all 0.5s ease-out;
+	left: 0;
+	transition: left 0.5s ease-out;
 
 	@include tablet {
 		background-image: none;
@@ -285,6 +284,7 @@ a { text-decoration: none }
 }
 
 #player-request-btn {
+	@include vgradient($yellow2, $yellow);
 	border-radius: px(1rem);
 	color: $black;
 	display: none;
@@ -292,7 +292,6 @@ a { text-decoration: none }
 	line-height: px(2rem);
 	padding: 0 px(1rem);
 	transform: translateY(50%);
-	@include vgradient($yellow2, $yellow);
 	@include tablet { display: block; }
 	@include desktop { display: block; }
 }
@@ -321,9 +320,9 @@ nav {
 	}
 
 	a {
+		@include morelink($orange, right, 0, 4px);
 		display: block;
 		font-size: px(1.4rem);
-		@include morelink($orange, right, 0, 4px);
 	}
 }
 
@@ -511,8 +510,8 @@ article:not(:last-child) {
 	p {
 		position: relative;
 		a {
-			font-size: px(1rem);
 			@include morelink($white, right, 0, 0);
+			font-size: px(1rem);
 		}
 	}
 
