@@ -10,9 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		playBtn = document.querySelectorAll('.play'),
 		stopBtn = document.querySelectorAll('.stop'),
 		volBtn = document.querySelector('#kfox-volume'),
-		nextBtn = document.querySelector('#kfox-next'),
-		slider = document.querySelector('#kfox-slider'),
-		currtime;
+		skipBtn = document.querySelectorAll('.next'),
+		slider = document.querySelector('#kfox-slider');
 
 	function play() {
 		if (song.currentTime === 0) {
@@ -46,6 +45,15 @@ document.addEventListener('DOMContentLoaded', function () {
 		volBtn.classList.toggle('icon-volume-off');
 	}
 
+	function moveTo() {
+		song.currentTime = slider.value;
+	}
+
+	function skip() {
+		song.currentTime += 10;
+		slider.value = song.currentTime;
+	}
+
 	hamburger.addEventListener('click', function () {
 		page.className = (page.className === '') ? 'menu-on' : '';
 	});
@@ -64,9 +72,12 @@ document.addEventListener('DOMContentLoaded', function () {
 	if (mobile) {
 		playBtn[1].addEventListener('click', play);
 		stopBtn[1].addEventListener('click', stop);
+		skipBtn[1].addEventListener('click', skip);
 	} else {
 		playBtn[0].addEventListener('click', play);
 		stopBtn[0].addEventListener('click', stop);
+		skipBtn[0].addEventListener('click', skip);
+		slider.addEventListener('change', moveTo);
 	}
 
 	song.ontimeupdate = function () {
@@ -85,14 +96,20 @@ document.addEventListener('DOMContentLoaded', function () {
 			if (mobile) {
 				playBtn[1].addEventListener('click', play);
 				stopBtn[1].addEventListener('click', stop);
+				skipBtn[1].addEventListener('click', moveTo);
 				playBtn[0].removeEventListener('click', play);
 				stopBtn[0].removeEventListener('click', stop);
+				skipBtn[0].removeEventListener('click', skip);
+				slider.removeEventListener('change', moveTo);
 
 			} else {
 				playBtn[0].addEventListener('click', play);
 				stopBtn[0].addEventListener('click', stop);
+				skipBtn[0].addEventListener('click', moveTo);
 				playBtn[1].removeEventListener('click', play);
 				stopBtn[1].removeEventListener('click', stop);
+				skipBtn[1].removeEventListener('click', skip);
+				slider.addEventListener('change', moveTo);
 			}
 		}
 	});
