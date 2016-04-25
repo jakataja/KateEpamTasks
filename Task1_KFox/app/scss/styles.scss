@@ -1,11 +1,11 @@
 @font-face {
- font-family: "Open Sans Condensed";
- src: url("../font/OpenSans-CondLight.eot?#iefix") format("embedded-opentype"),
-  url("../font/OpenSans-CondLight.woff") format("woff"),
-  url("../font/OpenSans-CondLight.ttf") format("truetype"),
-  url("../font/OpenSans-CondLight.svg#OpenSans-CondLight") format("svg");
- font-weight: normal;
- font-style: normal;
+  font-family: "Open Sans Condensed";
+  src: url("../font/OpenSans-CondLight.eot?#iefix") format("embedded-opentype"),
+    url("../font/OpenSans-CondLight.woff") format("woff"),
+    url("../font/OpenSans-CondLight.ttf") format("truetype"),
+    url("../font/OpenSans-CondLight.svg#OpenSans-CondLight") format("svg");
+  font-weight: normal;
+  font-style: normal;
 }
 
 $base-font: 16px;
@@ -31,13 +31,13 @@ $pad: 20px;
 
 @mixin tablet {
   @media (min-width: #{$tablet-width}) and (max-width: #{ $desktop-width - 1px}) {
-  @content;
+    @content;
   }
 }
 
 @mixin desktop {
   @media (min-width: #{$desktop-width}) {
-  @content;
+    @content;
   }
 }
 
@@ -70,8 +70,8 @@ $pad: 20px;
   }
 
   &::after {
-    border-top: 1px $yellow solid;
     border-right: 1px $yellow solid;
+    border-top: 1px $yellow solid;
     content: "";
     display: block;
     height: 7px;
@@ -99,11 +99,11 @@ $pad: 20px;
 }
 
 * {
+  -webkit-appearance: none;
   border: 0;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  -webkit-appearance: none;
 }
 
 :focus { outline: 0; }
@@ -114,18 +114,16 @@ html {
 }
 
 body {
-
-  box-sizing: border-box;
   background: $black;
   background-image: url("../images/nowplaying_bg.png");
   background-size: 100% 100vh;
   background-repeat: no-repeat;
+  box-sizing: border-box;
   color: $white;
   font-family: 'Open Sans Condensed', Tahoma, Verdana;
-  letter-spacing: 1.5px;
-
-  position: relative;
   left: 0;
+  letter-spacing: 1.5px;
+  position: relative;
   transition: left 0.5s ease-out;
 
   @include tablet {
@@ -163,14 +161,14 @@ a { text-decoration: none; }
 
 #wrapper {
   margin: 0 auto;
-  min-width: 320px;
   max-width: $mobile-width;
+  min-width: 320px;
 
-  @include tablet{
+  @include tablet {
     max-width: $tablet-width;
   }
 
-  @include desktop{
+  @include desktop {
     max-width: 1200px;
   }
 }
@@ -193,15 +191,15 @@ a { text-decoration: none; }
 
 #main-header {
   padding: px(1.3rem);
-  width: 100%;
   text-align: center;
+  width: 100%;
 
   @include tablet {
-  @include vgradient($black, $gray-light);
+    @include vgradient($black, $gray-light);
     text-align: left;
   }
   @include desktop {
-  @include vgradient($black, $gray-light);
+    @include vgradient($black, $gray-light);
     text-align: left;
   }
 }
@@ -241,7 +239,7 @@ a { text-decoration: none; }
     @include desktop { display: inline; }
   }
 
-  input[type="range"] {
+  [type="range"] {
     -webkit-appearance: none;
     background-color: $white;
     border-radius: 2px;
