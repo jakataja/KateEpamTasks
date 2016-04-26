@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Open Sans Condensed";
-  src: url("../font/OpenSans-CondLight.eot?#iefix") format("embedded-opentype"),
+  src: url("../font/OpenSans-CondLight.eot#iefix") format("embedded-opentype"),
     url("../font/OpenSans-CondLight.woff") format("woff"),
     url("../font/OpenSans-CondLight.ttf") format("truetype"),
     url("../font/OpenSans-CondLight.svg#OpenSans-CondLight") format("svg");
@@ -96,6 +96,8 @@ $pad: 20px;
 @mixin vgradient($top-color, $bottom-color) {
   background: $top-color;
   background: linear-gradient(to bottom,  $top-color 0%, $bottom-color 100%);
+  /* Valid, works in 8-9 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr='#{$top-color}', endColorstr='#{$bottom-color}')";
 }
 
 * {
@@ -219,19 +221,17 @@ a { text-decoration: none; }
   float: right;
   height: 61px;
   text-align: center;
-  vertical-align: middle;
 
   @include tablet { width: calc(100% - 136px - 61px - #{$pad}*2 ); }
   @include desktop { width: calc(100% - 136px - 61px - #{$pad}*2 ); }
 
   audio { display: none; }
 
-  img {
+  .audio-btn {
     display: none;
-    vertical-align: middle;
 
-    @include tablet { display: inline; }
-    @include desktop { display: inline; }
+    @include tablet { display: inline-block; }
+    @include desktop { display: inline-block; }
   }
 
   input {
@@ -243,11 +243,17 @@ a { text-decoration: none; }
 
   [type="range"] {
     -webkit-appearance: none;
+    //background-color: $white;
+    //border-radius: 2px;
+    //height: 4px;
+    vertical-align: middle;
+    width: 210px;
+  }
+
+  input::-webkit-slider-runnable-track {
     background-color: $white;
     border-radius: 2px;
     height: 4px;
-    vertical-align: middle;
-    width: 210px;
   }
 
   input::-webkit-slider-thumb {
@@ -257,24 +263,74 @@ a { text-decoration: none; }
     border-radius: 15px;
     height: 30px;
     width: 30px;
+    margin-top: -13px;
   }
+
+  input[type=range]::-ms-track {
+    animate: 0.2s;
+    background: transparent;
+    border-color: transparent;
+    border-width: 39px 0;
+    color: transparent;
+    cursor: pointer;
+    height: 4px;
+    width: 210px;
+  }
+
+  input[type=range]::-ms-fill-lower {
+    background: $white;
+    border-radius: 2px;
+  }
+
+  input[type=range]::-ms-fill-upper {
+    background: $white;
+    border-radius: 2px;
+  }
+
+  input[type=range]::-ms-thumb {
+    background: #ffffff;
+    border: 5px solid $yellow;
+    border-radius: 15px;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+  }
+
 }
 
-#kfox-stop,
-#kfox-next { height: 40px; }
+.audio-btn {
+  @include vgradient($yellow2, $yellow);
+  border-radius: 50%;
+  color: $black;
+  display: inline-block;
+  vertical-align: middle;
 
-#kfox-play { height: 61px; }
-
-.stop,
-.play,
-.next{
   &:hover {
-    border-radius: 50%;
     box-shadow: 0 5px 5px rgba(0,0,0,0.5);
   }
 }
 
-#kfox-volume {
+.icon-stop {
+  font-size: 24px;
+  padding: 4px 5px 6px 5px;
+}
+
+.icon-forward {
+  font-size: 24px;
+  padding: 5px 3px 5px 7px;;
+}
+
+.icon-play {
+  font-size: 40px;
+  padding: 5px 1px 6px 9px;
+}
+
+.icon-pause {
+  font-size: 40px;
+  padding: 5px 4px 6px 6px;
+}
+
+.vol {
   color: $yellow;
   display: inline-block;
   padding-top: 16px;

@@ -6,6 +6,9 @@
     <title>98.5 Kfox</title>
     <link rel="stylesheet" href="css/fontello.css">
     <link rel="stylesheet" href="css/styles.css">
+
+    <script src="js/pollyfills/classList.js"></script>
+
     <script src="js/kfox.js"></script>
   </head>
   <body>
@@ -17,9 +20,9 @@
         <audio src="https://www.freesound.org/data/previews/342/342608_4397472-lq.mp3" id="kfox-audio" controls="controls">
           Your browser does not support the audio element.
         </audio>
-        <img id="kfox-stop" class="stop" src="images/np_controlls_stop.png" alt="" >
-        <img id="kfox-play" class="play" src="images/np_controlls_play.png" alt="" >
-        <img id="kfox-next" class="next" src="images/np_controlls_next.png" alt="" >
+        <i id="kfox-stop" class="icon-stop audio-btn"></i>
+        <i id="kfox-play" class="icon-play audio-btn"></i>
+        <i id="kfox-next" class="icon-forward audio-btn"></i>
         <input id="kfox-slider" type="range" value="0" max=""/>
         <i id="kfox-volume" class="icon-volume-up vol"></i>
       </div>
@@ -55,9 +58,9 @@
                 <p id="np-panel-desc-title">Long Hot Summer Night</p>
               </div>
               <div id="np-panel-controls">
-                <img id="np-stop" class="stop" src="images/np_controlls_stop.png" alt="" >
-                <img id="np-play" class="play" src="images/np_controlls_play.png" alt="" >
-                <img id="np-next" class="next" src="images/np_controlls_next.png" alt="" >
+                <i id="np-stop" class="icon-stop audio-btn"></i>
+                <i id="np-play" class="icon-play audio-btn"></i>
+                <i id="np-next" class="icon-forward audio-btn"></i>
               </div>
             </div>
         </section>
