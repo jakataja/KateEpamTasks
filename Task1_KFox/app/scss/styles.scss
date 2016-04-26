@@ -135,13 +135,13 @@ body {
   }
 
   &.menu-on {
-    left: calc(100vw - 32px - #{$pad}*2 );
+    left: calc(100vw - 32px - #{$pad}*2);
   }
 }
 
 img { vertical-align: top; }
-a { text-decoration: none; }
 
+a { text-decoration: none; }
 
 .clearfix::before,
 .clearfix::after {
@@ -156,8 +156,6 @@ a { text-decoration: none; }
 .clearfix {
   zoom: 1; /* ie 6/7 */
 }
-
-
 
 #wrapper {
   margin: 0 auto;
@@ -174,9 +172,11 @@ a { text-decoration: none; }
 }
 
 @include tablet {
+
   [class*="wrap-"] {
     width: $mobile-width;
   }
+
   .wrap-1 { float: left; }
   .wrap-2 { float: right; }
   .wrap-3 { float: left; }
@@ -188,7 +188,6 @@ a { text-decoration: none; }
   .wrap-3 { float: right; width: 280px; }
 }
 
-
 #main-header {
   padding: px(1.3rem);
   text-align: center;
@@ -198,10 +197,12 @@ a { text-decoration: none; }
     @include vgradient($black, $gray-light);
     text-align: left;
   }
+
   @include desktop {
     @include vgradient($black, $gray-light);
     text-align: left;
   }
+
 }
 
 #hamburger {
@@ -235,6 +236,7 @@ a { text-decoration: none; }
 
   input {
     display: none;
+
     @include tablet { display: inline; }
     @include desktop { display: inline; }
   }
@@ -263,9 +265,9 @@ a { text-decoration: none; }
 
 #kfox-play { height: 61px; }
 
-#kfox-stop,
-#kfox-play,
-#kfox-next {
+.stop,
+.play,
+.next{
   &:hover {
     border-radius: 50%;
     box-shadow: 0 5px 5px rgba(0,0,0,0.5);
@@ -291,6 +293,7 @@ a { text-decoration: none; }
   line-height: px(2rem);
   padding: 0 px(1rem);
   transform: translateY(50%);
+
   @include tablet { display: block; }
   @include desktop { display: block; }
 }
@@ -325,10 +328,7 @@ nav {
   }
 }
 
-
-
 #landing-page {
-
   height: calc(100vh - #{$pad}*2 - 65px);
   padding: 0 $pad;
 
@@ -468,10 +468,6 @@ nav {
 
     img {
       vertical-align: middle;
-      &:hover {
-        box-shadow: 0 5px 5px rgba(0,0,0,0.5);
-        border-radius: 50%;
-      }
     }
   }
 }
@@ -482,7 +478,6 @@ article:not(:last-child) {
 }
 
 .section-post {
-
   border-bottom: 1px $underline-color solid;
   font-size: px(0.9rem);
   margin: 0 auto;
@@ -497,6 +492,7 @@ article:not(:last-child) {
 
   p {
     position: relative;
+
     a {
       @include morelink($white, right, 0, 0);
       font-size: px(1rem);
