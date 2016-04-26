@@ -1,148 +1,239 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>98.5 Kfox</title>
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
-    <body>
-        <header></header>
-        <div id="landingPage"></div>
-        <div id="recentlyPlayed">
-            <h1>Recently Played</h1>
-            <div class="recentlyPlayed-item">
-                <div class="recentlyPlayed-cover"></div>
-                <div class="recentlyPlayed-author">George Thorogood &amp; Destroyers</div>
-                <div class="recentlyPlayed-title">Bad to the Bone</div>
-                <div class="recentlyPlayed-length">9:36</div>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>98.5 Kfox</title>
+    <link rel="stylesheet" href="css/fontello.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script src="js/pollyfills/classList.js"></script>
+
+    <script src="js/kfox.js"></script>
+  </head>
+  <body>
+    <header role="banner" id="main-header">
+      <div id="hamburger"><i role="button" class="icon-menu"></i></div>
+      <img id="logo" src="images/logotype.png" alt="">
+      <div id="player-request-btn">Request a Song</div>
+      <div id="header-player">
+        <audio src="https://www.freesound.org/data/previews/342/342608_4397472-lq.mp3" id="kfox-audio" controls="controls">
+          Your browser does not support the audio element.
+        </audio>
+        <i id="kfox-stop" class="icon-stop audio-btn"></i>
+        <i id="kfox-play" class="icon-play audio-btn"></i>
+        <i id="kfox-next" class="icon-forward audio-btn"></i>
+        <input id="kfox-slider" type="range" value="0" max=""/>
+        <i id="kfox-volume" class="icon-volume-up vol"></i>
+      </div>
+    </header>
+    <nav class="" role="navigation">
+      <ul>
+        <li><a href="#landing-page">Now Playing</a></li>
+        <li><a href="#recently-played">Recently Played</a></li>
+        <li><a href="#concerts">Concerts</a></li>
+        <li><a href="#contests">Contests</a></li>
+        <li><a href="#get-my-perks">Get My Perks</a></li>
+        <li><a href="#kfox-links">KFOX Links</a></li>
+        <li><a href="#station-directory">Station Directory</a></li>
+      </ul>
+    </nav>
+    <div id="wrapper" role="main">
+      <div class="wrap-1">
+        <section id="landing-page" class="clearfix" role="region">
+          <div id="np-panel">
+              <img id="np-panel-cover" src="images/nowplaying_image.png" alt=""/>
+              <div id="np-panel-social-icons">
+                <p><i class="icon-mail-circled"></i></p>
+                <p><i class="icon-facebook-circled"></i></p>
+                <p><i class="icon-twitter-circled"></i></p>
+              </div>
+              <div id="np-panel-thumbs-icons">
+                <p><i class="icon-thumbs-up"></i></p>
+                <p><i class="icon-thumbs-down"></i></p>
+              </div>
+              <div id="np-panel-desc">
+                <p id="np-panel-desc-header">Now playing:</p>
+                <p id="np-panel-desc-performer">Jimmi Hendrix Experience</p>
+                <p id="np-panel-desc-title">Long Hot Summer Night</p>
+              </div>
+              <div id="np-panel-controls">
+                <i id="np-stop" class="icon-stop audio-btn"></i>
+                <i id="np-play" class="icon-play audio-btn"></i>
+                <i id="np-next" class="icon-forward audio-btn"></i>
+              </div>
             </div>
-            <div class="recentlyPlayed-item">
-                <div class="recentlyPlayed-cover"></div>
-                <div class="recentlyPlayed-author">Lynyrd Skynyrd</div>
-                <div class="recentlyPlayed-title">Free Bird</div>
-                <div class="recentlyPlayed-length">3:31</div>
-            </div> 
-            <div class="recentlyPlayed-item">
-                <div class="recentlyPlayed-cover"></div>
-                <div class="recentlyPlayed-author">Led Zeppelin</div>
-                <div class="recentlyPlayed-title">Stairway to Heaven</div>
-                <div class="recentlyPlayed-length">5:36</div>
-            </div>            
-            <div class="recentlyPlayed-item">
-                <div class="recentlyPlayed-cover"></div>
-                <div class="recentlyPlayed-author">The Who</div>
-                <div class="recentlyPlayed-title">Won't Get Fooled Again</div>
-                <div class="recentlyPlayed-length">4:36</div>
-            </div>            
-            <div class="recentlyPlayed-item">
-                <div class="recentlyPlayed-cover"></div>
-                <div class="recentlyPlayed-author">The Rolling Stones</div>
-                <div class="recentlyPlayed-title">You Can't Always Get What You Want</div>
-                <div class="recentlyPlayed-length">9:16</div>
-            </div>            
-            <div class="recentlyPlayed-item">
-                <div class="recentlyPlayed-cover"></div>
-                <div class="recentlyPlayed-author">Guns N'Roses</div>
-                <div class="recentlyPlayed-title">Patience</div>
-                <div class="recentlyPlayed-length">6:11</div>
-            </div>            
-            <div class="recentlyPlayed-item">
-                <div class="recentlyPlayed-cover"></div>
-                <div class="recentlyPlayed-author">Cinderella</div>
-                <div class="recentlyPlayed-title">Don't Know What You Got (Till It's Gone)</div>
-                <div class="recentlyPlayed-length">4:39</div>
+        </section>
+        <section id="recently-played" class="section-post clearfix" role="region">
+          <h1>Recently Played</h1>
+          <article class="recently-played-item post" role="article">
+            <img src="images/played_1.png" alt=""/>
+            <div class="post-wrapper">
+              <div class="author">George Thorogood &amp; Destroyers</div>
+              <div class="title">Bad to the Bone</div>
+              <div class="length">9:36</div>
             </div>
-            
-        </div>
-        <div id="concerts">
-            <h1>Concerts</h1>
-            <div class="concert-item">
-                <div class="concert-item-image"></div>
-                <div class="concert-item-date">29.10.2014 8:49 AM</div>
-                <div class="concert-item-title">Styx</div>
-                <div class="concert-item-details">Wednesday, January 28th | City National Civic, San Jose</div>
-                <div class="concert-item-more"><a href="#">More</a></div>
+          </article>
+          <article class="recently-played-item post" role="article">
+            <img src="images/played_2.png" alt=""/>
+            <div class="post-wrapper">
+              <div class="author">Lynyrd Skynyrd</div>
+              <div class="title">Free Bird</div>
+              <div class="length">3:31</div>
             </div>
-            <div class="concert-item">
-                <div class="concert-item-image"></div>
-                <div class="concert-item-date">11.12.2014 10:54 PM</div>
-                <div class="concert-item-title">Ringo Starr and His All Starr Band</div>
-                <div class="concert-item-details">Friday, March 13th, 2015 | The Masonic, San Francisco</div>
-                <div class="concert-item-more"><a href="#">More</a></div>
+          </article>
+          <article class="recently-played-item post" role="article">
+            <img src="images/played_3.png" alt="">
+            <div class="post-wrapper">
+              <div class="author">Led Zeppelin</div>
+              <div class="title">Stairway to Heaven</div>
+              <div class="length">5:36</div>
             </div>
-            <div class="concert-item">
-                <div class="concert-item-image"></div>
-                <div class="concert-item-date">18.11.2014 6:39 PM</div>
-                <div class="concert-item-title">Fleetwood Mac: On With The Show</div>
-                <div class="concert-item-details">Tuesday, April 7th | Oracle Arena, Oakland</div>
-                <div class="concert-item-more"><a href="#">More</a></div>
+          </article>
+          <article class="recently-played-item post" role="article">
+            <img src="images/played_4.png" alt=""/>
+            <div class="post-wrapper">
+              <div class="author">The Who</div>
+              <div class="title">Won't Get Fooled Again</div>
+              <div class="length">4:36</div>
             </div>
-        </div>
-        <div id="contests">
-            <h1>Contests</h1>
-            <div class="contest-item">
-                <div class="contest-item-image"></div>
-                <div class="contest-item-date">29.10.2014 8:49 AM</div>
-                <div class="contest-item-title">Free Beer Friday - Buffallo Wild Wings</div>
-                <div class="contest-item-desc">Get ready for Free Beer Friday! For a shot to win a $20 gift card to Buffalo Wild Wings, text BEER to 96211* all day on Friday. For more info, click here.</div>
-                <div class="contest-item-more"><a href="#">More</a></div>                
+          </article>
+          <article class="recently-played-item post" role="article">
+            <img src="images/played_5.png" alt="" >
+            <div class="post-wrapper">
+              <div class="author">The Rolling Stones</div>
+              <div class="title">You Can't Always Get What You Want</div>
+              <div class="length">9:16</div>
             </div>
-            <div class="contest-item">
-                <div class="contest-item-image"></div>
-                <div class="contest-item-date">18.11.2014 6:39 PM</div>
-                <div class="contest-item-title">Win Kurios tickets with Chris Jackson</div>
-                <div class="contest-item-desc">Listen to Chris Jackson in the 6am hour for a chance to win tickets to the show on NYE! Click here for more info.</div>
-                <div class="contest-item-more"><a href="#">More</a></div>                
-            </div>            
-        </div>
-        <div id="getMyPerks">
-            <h1>Get My PERKS</h1>
-            <div class="perks-item">
-                <div class="perks-item-image"></div>
-                <div class="perks-item-date">23.12.2014 9:37 AM</div>
-                <div class="perks-item-title">Half Off Winter Detailing Service from Double Take Auto Spa!</div>
-                <div class="perks-item-desc">Our Winter Blitz detailing service will protect your vehicle exterior and interior during these harsh winter months. We'll first clean your paint with our clay bar treatment to remove all those damaging contaminates.</div>
-                <div class="perks-item-more"><a href="#">More</a></div>                
+          </article>
+          <article class="recently-played-item post" role="article">
+            <img src="images/played_6.png" alt="" >
+            <div class="post-wrapper">
+              <div class="author">Guns N'Roses</div>
+              <div class="title">Patience</div>
+              <div class="length">6:11</div>
             </div>
-            <div class="perks-item">
-                <div class="perks-item-image"></div>
-                <div class="perks-item-date">11.12.2014 10:17 AM</div>
-                <div class="perks-item-title">$28 -- 'Sleek' Izakaya Roku: Dinner for 2 on Market</div>
-                <div class="perks-item-desc"></div>
-                <div class="perks-item-more"><a href="#">More</a></div>                
-            </div>            
-        </div>
-        <div id="kfoxLinks">
-            <h1>KFOX Links</h1>
-            <div>KFOX Blog</div>
-            <div>Facebook</div>
-            <div>Twitter</div>
-            <div>Concert Calendar</div>
-            <div>Calendar</div>            
-        </div>
-        <div id="stationDirectory">
-            <h1>Station Directory</h1>
-            <div class="singleStation-item">
-                <div class="singleStation-item-frequency">102.9 KBLX</div>
-                <div class="singleStation-item-area">San Francisco - Oakloand - San Jose CA</div>
-                <div class="singleStation-item-gender">R&amp;B / KBLX-FM</div>
+          </article>
+          <article class="recently-played-item post" role="article">
+            <img src="images/played_7.png" alt=""/>
+            <div class="post-wrapper">
+              <div class="author">Cinderella</div>
+              <div class="title">Don't Know What You Got (Till It's Gone)</div>
+              <div class="length">4:39</div>
             </div>
-            <div class="singleStation-item">
-                <div class="singleStation-item-frequency">95.7 The Game</div>
-                <div class="singleStation-item-area">San Francisco - Oakloand - San Jose CA</div>
-                <div class="singleStation-item-gender">Sports / KGMZ-FM</div>
+          </article>
+        </section>
+      </div>
+      <div class="wrap-2">
+        <section id="concerts" class="section-post clearfix" role="region">
+          <h1>Concerts</h1>
+          <article class="concert-item post">
+            <img src="images/concerts_1.png" alt=""/>
+            <div class="post-wrapper">
+              <div class="date">29.10.2014 8:49 AM</div>
+              <div class="title">Styx</div>
+              <div class="details">Wednesday, January 28th | City National Civic, San Jose</div>
+              <div class="more"><a href="#">More</a></div>
             </div>
-            <div class="singleStation-item">
-                <div class="singleStation-item-frequency">96.5 KOIT</div>
-                <div class="singleStation-item-area">San Francisco - Oakloand - San Jose CA</div>
-                <div class="singleStation-item-gender">Sports / KGMZ-FM</div>
-            </div>            
-            <div class="singleStation-item">
-                <div class="singleStation-item-frequency">Q102</div>
-                <div class="singleStation-item-area">San Francisco - Oakloand - San Jose CA</div>
-                <div class="singleStation-item-gender">HotAC / KRBQ-FM</div>
-            </div>            
-        </div>
-    </body>
+          </article>
+          <article class="concert-item post">
+            <img src="images/concerts_2.png" alt=""/>
+            <div class="post-wrapper">
+              <div class="date">11.12.2014 10:54 PM</div>
+              <div class="title">Ringo Starr and His All Starr Band</div>
+              <div class="details">Friday, March 13th, 2015 | The Masonic, San Francisco</div>
+              <div class="more"><a href="#">More</a></div>
+            </div>
+          </article>
+          <article class="concert-item post">
+            <img src="images/concerts_3.png" alt=""/>
+            <div class="post-wrapper">
+              <div class="date">18.11.2014 6:39 PM</div>
+              <div class="title">Fleetwood Mac: On With The Show</div>
+              <div class="details">Tuesday, April 7th | Oracle Arena, Oakland</div>
+              <div class="more"><a href="#">More</a></div>
+            </div>
+          </article>
+        </section>
+        <section id="contests" class="section-post clearfix" role="region">
+          <h1>Contests</h1>
+          <article class="contest-item post">
+            <img src="images/contests_1.png" alt=""/>
+            <div class="post-wrapper">
+              <div class="date">29.10.2014 8:49 AM</div>
+              <div class="title">Free Beer Friday - Buffallo Wild Wings</div>
+              <div class="desc">Get ready for Free Beer Friday! For a shot to win a $20 gift card to Buffalo Wild Wings, text BEER to 96211* all day on Friday. For more info, click here.</div>
+              <div class="more"><a href="#">More</a></div>
+            </div>
+          </article>
+          <article class="contest-item post">
+            <img src="images/contests_2.png" alt=""/>
+            <div class="post-wrapper">
+              <div class="date">18.11.2014 6:39 PM</div>
+              <div class="title">Win Kurios tickets with Chris Jackson</div>
+              <div class="desc">Listen to Chris Jackson in the 6am hour for a chance to win tickets to the show on NYE! Click here for more info.</div>
+              <div class="more"><a href="#">More</a></div>
+            </div>
+          </article>
+        </section>
+        <section id="get-my-perks" class="section-post clearfix" role="region">
+        <h1>Get My PERKS</h1>
+        <article class="perks-item post">
+          <img src="images/perks_1.png" alt=""/>
+          <div class="post-wrapper">
+            <div class="date">23.12.2014 9:37 AM</div>
+            <div class="title">Half Off Winter Detailing Service from Double Take Auto Spa!</div>
+            <div class="desc">Our Winter Blitz detailing service will protect your vehicle exterior and interior during these harsh winter months. We'll first clean your paint with our clay bar treatment to remove all those damaging contaminates.</div>
+            <div class="more"><a href="#">More</a></div>
+          </div>
+        </article>
+        <article class="perks-item post">
+          <img src="images/perks_2.png" alt=""/>
+          <div class="post-wrapper">
+            <div class="date">11.12.2014 10:17 AM</div>
+            <div class="title">$28 -- 'Sleek' Izakaya Roku: Dinner for 2 on Market</div>
+            <div class="desc"></div>
+            <div class="more"><a href="#">More</a></div>
+          </div>
+        </article>
+      </section>
+      </div>
+      <div class="wrap-3 ">
+        <section id="kfox-links" class="section-post  post clearfix" role="region">
+        <h1>KFOX Links</h1>
+        <p><a href="#">KFOX Blog</a></p>
+        <p><a href="#">Facebook</a></p>
+        <p><a href="#">Twitter</a></p>
+        <p><a href="#">Concert Calendar</a></p>
+      </section>
+        <section id="station-directory" class="section-post clearfix" role="region">
+        <h1>Station Directory</h1>
+        <article class="single-station-item post">
+          <div class="frequency">102.9 KBLX</div>
+          <div class="area">San Francisco - Oakloand - San Jose CA</div>
+          <div class="gender">R&amp;B / KBLX-FM</div>
+          <a href="#"></a>
+        </article>
+        <article class="single-station-item  post">
+          <div class="frequency">95.7 The GAME</div>
+          <div class="area">San Francisco - Oakloand - San Jose CA</div>
+          <div class="gender">Sports / KGMZ-FM</div>
+          <a href="#"></a>
+        </article>
+        <article class="single-station-item post">
+          <div class="frequency">96.5 KOIT</div>
+          <div class="area">San Francisco - Oakloand - San Jose CA</div>
+          <div class="gender">Sports / KGMZ-FM</div>
+          <a href="#"></a>
+        </article>
+        <article class="single-station-item post">
+          <div class="frequency">Q102</div>
+          <div class="area">San Francisco - Oakloand - San Jose CA</div>
+          <div class="gender">HotAC / KRBQ-FM</div>
+          <a href="#"></a>
+        </article>
+      </section>
+      </div>
+    </div>
+  </body>
 </html>
